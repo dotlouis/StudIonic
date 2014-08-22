@@ -1,5 +1,8 @@
 node_modules/
 www/lib/
 merge/
-plateforms/
+platforms/
 hooks/
+plugins/android.json
+plugins/ios.json
+www/css/
