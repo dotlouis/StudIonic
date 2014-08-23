@@ -25,4 +25,21 @@ angular.module('studionic.factories', [])
 			return Parse.User.signUp(username, password, {email: username});
 		}
 	};
+}])
+
+.factory('UserFactory', ['$q','$log', function($q, $log){
+	return {
+		get: function(user){
+			var deferred = $q.defer();
+			var userdata = {
+				fullname: "Larry Page",
+				role: "entrepreneur",
+				schoolyear: 16,
+				schoolname: "Google",
+				absences: 2
+			};
+			deferred.resolve(userdata);
+			return	deferred.promise;
+		}
+	};
 }]);

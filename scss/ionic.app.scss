@@ -15,9 +15,77 @@ $royal:                           #8a6de9 !default;
 $dark:                            #444 !default;
 */
 
+// =================================================================
+// Google design colors
+// =================================================================
+
+// Include material design palette
+@import "www/lib/material-colors/dist/colors.scss";
+
+$md-text:				rgba(0,0,0,0.87);
+$md-secondary-text:		rgba(0,0,0,0.54);
+$md-hint-text:			rgba(0,0,0,0.26);
+$md-ividers:			rgba(0,0,0,0.12);
+
+$royal:                        $md-indigo-500 !default;
+
+// =================================================================
+// Ionic style
+// =================================================================
+
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+// =================================================================
+// Personnal styles
+// =================================================================
+
+
+.bar.bar-transparent{
+	border: none;
+	background-color: rgba(0, 0, 0, 0.3);
+	background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent);
+	
+	+ ion-content{
+		top: 0;
+	}
+}
+
+// put the scroll height to take the whole place
+// allow to define content height in percent.
+.scroll-full > .scroll{
+	height: 100%;
+}
+
+.profile-cover{
+	height: 45%;
+	background: url(../img/cover.jpg);
+	background-size: cover;
+}
+
+.profile-picture{
+	height: 100px;
+	width: 100px;
+	margin-top: -80px;
+	margin-left: 30px;
+	border-radius: 50%;
+	background: url(../img/profile.jpg);
+	background-size: cover;
+}
+
+.profile-info{
+	padding: 30px;
+
+	h2{
+		color: $md-text;
+		margin-bottom: 15px;
+	}
+
+	p{
+		color: $md-secondary-text;
+		margin-bottom: 0;
+	}
+}

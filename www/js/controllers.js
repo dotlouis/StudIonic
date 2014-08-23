@@ -63,6 +63,10 @@ angular.module('studionic.controllers',[])
 	
 }])
 
-.controller('ProfileCtrl', ['$scope', function($scope){
+.controller('ProfileCtrl', ['$scope','UserFactory', function($scope, UserFactory){
+
+	UserFactory.get($scope.user).then(function(userdata){
+		$scope.userdata = userdata;
+	});
 	
 }]);

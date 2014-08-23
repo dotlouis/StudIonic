@@ -1,8 +1,14 @@
 <ion-view title="{{user.attributes.nickname}}">
-	<ion-nav-buttons side="left">
+	<ion-nav-bar align-title="left" class="bar-transparent bar-positive nav-title-slide-ios7">
 	  <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
-	</ion-nav-buttons>
-	<ion-content>
-	Profile
+	</ion-nav-bar>
+	<ion-content padding="false" class="scroll-full">
+		<div class="profile-cover"></div>
+		<div class="profile-picture"></div>
+		<div class="profile-info">
+			<h2>{{userdata.fullname}}</h2>
+			<p>{{userdata.schoolyear}} years {{userdata.role}} at {{userdata.schoolname}}</p>
+			<p>{{userdata.absences}} check in missed</p>
+		</div>
 	</ion-content>
 </ion-view>
