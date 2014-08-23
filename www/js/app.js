@@ -1,6 +1,6 @@
 angular.module('studionic', ['ionic', 'studionic.controllers','studionic.factories'])
 
-.run(function($ionicPlatform) {
+.run(['$ionicPlatform', function($ionicPlatform) {
 
   Parse.initialize("kM564gKOHtrqKdpby7lPyodnot5Pdg2o9z9XgHk5", "r0q04g2xEKVSzkOHmoQtzFLokP4pU2qZHXSaGQlp");
 
@@ -14,26 +14,61 @@ angular.module('studionic', ['ionic', 'studionic.controllers','studionic.factori
       StatusBar.styleDefault();
     }
   });
-})
+}])
 
-.config(function($stateProvider, $urlRouterProvider) {
-  $stateProvider
+.config(['$stateProvider','$urlRouterProvider','$logProvider', function($stateProvider, $urlRouterProvider, $logProvider) {
+  
+  // Whether the application will log debug messages or not
+  $logProvider.debugEnabled(true);
 
-    .state('welcome', {
+  $stateProvider.state('welcome', {
       url: "/welcome",
       templateUrl: "templates/welcome.html",
       controller: 'WelcomeCtrl',
       resolve: {
         signedUser: function(AuthFactory, $state){
           AuthFactory.currentUser().then(function(signedUser){
-            console.log("Logged In !");
-            console.log("signedUser");
-            //$state.go('app.studlife');
-          }, function(error){console.log("Not signed in"); console.log(error);});
+            $state.go('app.studlife');
+          });
+        }
+      }
+    })
+    .state('app', {
+      url: "/app",
+      abstract: true,
+      templateUrl: "templates/menu.html",
+      controller: 'AppCtrl',
+      resolve: {
+        signedUser: function(AuthFactory, $state){
+          // The signed user is implicitly injected into the controller
+          // because of the chaining of promises.
+          // here we only describe the reject part but when it resolve it returns the
+          // result of the parent promise.
+          return AuthFactory.currentUser().catch(function(error){
+            $state.go('welcome');
+          });
+        }
+      }
+    })
+    .state('app.studlife', {
+      url: "/studlife",
+      views: {
+        'menuContent@app' :{
+          templateUrl: "templates/studlife.html",
+          controller: 'StudLifeCtrl'
+        }
+      }
+    })
+    .state('app.profile', {
+      url: "/profile",
+      views: {
+        'menuContent@app' :{
+          templateUrl: "templates/profile.html",
+          controller: 'ProfileCtrl'
         }
       }
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/welcome');
-});
+  $urlRouterProvider.otherwise('/app/studlife');
+}]);

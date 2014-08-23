@@ -1,14 +1,18 @@
 angular.module('studionic.factories', [])
 
-.factory('AuthFactory', ['$q', function($q){	
+.factory('AuthFactory', ['$q','$log', function($q, $log){	
 	return {
 		currentUser: function(){
 			var deferred = $q.defer();
 			var currentUser = Parse.User.current();
-			if(currentUser)
+			if(currentUser){
+				$log.debug(currentUser);
 				deferred.resolve(currentUser);
-			else
+			}
+			else{
+				$log.debug("No current user");
 				deferred.reject("No current user");
+			}
 			return deferred.promise;
 		},
 		signIn: function(username, password){

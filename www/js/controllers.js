@@ -1,10 +1,10 @@
 angular.module('studionic.controllers',[])
 
-.controller('WelcomeCtrl',['$scope','$ionicPopup', function($scope, $ionicPopup){
+.controller('WelcomeCtrl',['$scope','$state','$ionicPopup','AuthFactory', function($scope, $state, $ionicPopup, AuthFactory){
 	
 	$scope.user = {
-		email: "",
-		password: ""
+		email: "bruce@wayne.com",
+		password: "imbatman"
 	};
 
 	$scope.showLoginPopup = function(){
@@ -20,19 +20,25 @@ angular.module('studionic.controllers',[])
 					text: '<b>Login</b>',
 					type: 'button-positive',
 					onTap: function(e) {
-						if (!$scope.user.email || !$scope.user.password) {
-							console.log($scope.user);
-							if(!$scope.user.email)
-								alert("Please enter a valid email adress");
-							else if(!$scope.user.password)
-								alert("Please enter a password");
-							else
-								console.log("ohoh");
-
+						if (!$scope.user.email) {
+							alert("Please enter a valid email adress");
 							//don't allow the user to close unless he enters his credentials
 							e.preventDefault();
-						} else {
-							return $scope.user;
+						}
+						else if(!$scope.user.password){
+							alert("Please enter a password");
+							e.preventDefault();
+						}
+						else {
+							AuthFactory.signIn($scope.user.email, $scope.user.password).then(function(signedUser){
+								$state.go('app.studlife');
+							}, function(error){
+								$ionicPopup.alert({
+									title: "Login",
+									template: error.message
+								});
+							});
+							//return $scope.user;
 						}
 					}
 				},
@@ -40,4 +46,23 @@ angular.module('studionic.controllers',[])
 		});
 	};
 
+}])
+
+.controller('AppCtrl', ['$scope','$state','AuthFactory','signedUser', function($scope, $state, AuthFactory, signedUser){
+	$scope.logOut = function(){
+		AuthFactory.logOut();
+		$state.go('welcome');
+	};
+
+	$scope.user = signedUser;
+	//$scope.user.attributes.pic = 'img/user.jpg';
+
+}])
+
+.controller('StudLifeCtrl', ['$scope', function($scope){
+	
+}])
+
+.controller('ProfileCtrl', ['$scope', function($scope){
+	
 }]);
