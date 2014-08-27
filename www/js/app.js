@@ -36,7 +36,7 @@ angular.module('studionic', ['ionic', 'studionic.controllers','studionic.factori
     .state('app', {
       url: "/app",
       abstract: true,
-      templateUrl: "templates/menu.html",
+      //templateUrl: "templates/menu.html",
       controller: 'AppCtrl',
       resolve: {
         signedUser: function(AuthFactory, $state){
@@ -53,7 +53,7 @@ angular.module('studionic', ['ionic', 'studionic.controllers','studionic.factori
     .state('app.studlife', {
       url: "/studlife",
       views: {
-        'menuContent@app' :{
+        'main@' :{
           templateUrl: "templates/studlife.html",
           controller: 'StudLifeCtrl'
         }
@@ -62,7 +62,7 @@ angular.module('studionic', ['ionic', 'studionic.controllers','studionic.factori
     .state('app.profile', {
       url: "/profile",
       views: {
-        'menuContent@app' :{
+        'main@' :{
           templateUrl: "templates/profile.html",
           controller: 'ProfileCtrl'
         }

@@ -1,8 +1,26 @@
-<ion-view title="StudLife">
-	<ion-nav-bar align-title="left" class="bar-royal nav-title-slide-ios7">
-	  <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+<ion-view title="Studapp">
+	<ion-nav-bar align-title="left" class="bar bar-royal bar-md">
+<!-- 		<div class="buttons left-buttons">
+			<button class="button-profile" ui-sref="app.profile">
+			</button>
+		</div> -->
 	</ion-nav-bar>
+	<ion-nav-buttons side="left">
+		<button class="button-profile" ui-sref="app.profile">
+		</button>
+	</ion-nav-buttons>
 	<ion-content>
-  Studlife
-  </ion-content>
+		
+		<div class="card card-md feedback">
+			<h3>Feedback</h3>
+		    <p>Have a problem, a question or a suggestion ? Tell us</p>
+			<button class="button button-clear">
+			  Email
+			</button>
+			<button class="button button-clear button-royal">
+			  Tweet
+			</button>
+		</div>
+
+	</ion-content>
 </ion-view>
