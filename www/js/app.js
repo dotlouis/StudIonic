@@ -37,7 +37,8 @@ angular.module('studionic', ['ionic','ngCordova','studionic.controllers','studio
       url: "/app",
       abstract: true,
       //templateUrl: "templates/menu.html",
-      //controller: 'AppCtrl',
+      template: '<ion-nav-view name="main" animation="slide-left-right"></ion-nav-view>',
+      controller: 'AppCtrl',
       resolve: {
         signedUser: function(AuthFactory, $state){
           // The signed user is implicitly injected into the controller
@@ -53,7 +54,7 @@ angular.module('studionic', ['ionic','ngCordova','studionic.controllers','studio
     .state('app.studlife', {
       url: "/studlife",
       views: {
-        'main@' :{
+        'main@app' :{
           templateUrl: "templates/studlife.html",
           controller: 'StudLifeCtrl'
         }
@@ -62,7 +63,7 @@ angular.module('studionic', ['ionic','ngCordova','studionic.controllers','studio
     .state('app.profile', {
       url: "/profile",
       views: {
-        'main@' :{
+        'main@app' :{
           templateUrl: "templates/profile.html",
           controller: 'ProfileCtrl'
         }

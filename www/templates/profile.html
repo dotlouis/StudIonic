@@ -1,9 +1,10 @@
 <ion-view title="{{userdata.fullname}}">
-	<ion-nav-bar align-title="left" class="bar bar-royal bar-transparent">
+	<ion-nav-bar align-title="left" class="bar bar-royal bar-transparent bar-md">
 		<div class="buttons left-buttons">
-			<button class="button button-icon ion-arrow-left-c" ui-sref="app.studlife"></button>
+			<button class="button button-icon ion-arrow-left-c" ui-sref="app.studlife"></button>			
 		</div>
 	</ion-nav-bar>
+
 	<ion-content padding="false" class="scroll-full">
 		<div class="profile-cover"></div>
 		<div class="profile-picture"></div>
@@ -12,5 +13,6 @@
 			<p>{{userdata.schoolyear}} years {{userdata.role}} at {{userdata.schoolname}}</p>
 			<p>{{userdata.absences}} check in missed</p>
 		</div>
+		<button class="button button-outline button-full button-assertive" ng-click="logOut()">Logout</button>
 	</ion-content>
 </ion-view>
