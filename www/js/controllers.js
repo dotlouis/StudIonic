@@ -48,35 +48,38 @@ angular.module('studionic.controllers',[])
 
 }])
 
-.controller('AppCtrl', ['$scope','$state','AuthFactory','signedUser', function($scope, $state, AuthFactory, signedUser){
+.controller('AppCtrl', ['$scope','$state','AuthFactory','SettingFactory','signedUser', function($scope, $state, AuthFactory, SettingFactory, signedUser){
 	$scope.logOut = function(){
 		AuthFactory.logOut();
 		$state.go('welcome');
 	};
 
 	$scope.user = signedUser;
+	SettingFactory.setDefault();
+	SettingFactory.get('settings').then(function(settings){
+		$scope.settings = settings;
+	});
 
 }])
 
 .controller('StudLifeCtrl', ['$scope','$ionicPopup','$cordovaSocialSharing', function($scope, $ionicPopup, $cordovaSocialSharing){
 	$scope.tweetIntent = function(){
 		$cordovaSocialSharing.shareViaTwitter("@studapp", null, null).then(function(result) {
-		     console.log(result); 
-		 }, function(err) {
-		 	$ionicPopup.alert({
-		 	     title: 'Can\'t use Twitter',
-		 	     template: 'No twitter app found please install one'
-		 	   });
-		 });
+			console.log(result); 
+		}, function(err) {
+			$ionicPopup.alert({
+				title: 'Can\'t use Twitter',
+				template: 'You may have no Twitter app installed'
+			});
+		});
 	};
 
 	$scope.emailIntent = function(){
-		$cordovaSocialSharing.shareViaEmail("", "Feedback", ["studapp@gmail.com"], null, null, null).then(
-		  function(result) {
-		    console.log(result);
-		  }, function(err) {
-		  	console.log(err);
-		  });
+		$cordovaSocialSharing.shareViaEmail("", "Feedback", ["studapp@gmail.com"], null, null, null).then(function(result) {
+			console.log(result);
+		}, function(err) {
+			console.log(err);
+		});
 	};
 }])
 

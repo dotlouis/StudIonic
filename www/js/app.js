@@ -1,4 +1,4 @@
-angular.module('studionic', ['ionic','ngCordova','studionic.controllers','studionic.factories'])
+angular.module('studionic', ['ionic','ngCordova','studionic.controllers','studionic.factories','studionic.values'])
 
 .run(['$ionicPlatform', function($ionicPlatform) {
 
