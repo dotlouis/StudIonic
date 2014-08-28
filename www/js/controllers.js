@@ -87,6 +87,13 @@ angular.module('studionic.controllers',[])
 	};
 }])
 
+
+.controller('CourseCtrl', ['$scope','CourseFactory', function($scope, CourseFactory){
+	CourseFactory.get().then(function(coursedata){
+		$scope.coursedata = coursedata;
+	});
+}])
+
 .controller('ProfileCtrl', ['$scope','UserFactory', function($scope, UserFactory){
 
 	UserFactory.get($scope.user).then(function(userdata){

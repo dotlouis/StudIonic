@@ -5,6 +5,7 @@ angular.module('studionic.values',[])
 	templateUrl: "templates/cards/",
 
 	cards: {
-		"feedback":{enabled: true}
+		"feedback":{enabled: true},
+		"course":{enabled: true}
 	}
 });

@@ -44,6 +44,28 @@ angular.module('studionic.factories', [])
 	};
 }])
 
+
+.factory('CourseFactory', ['$q', function($q){
+	return {
+		get: function(){
+			var deferred = $q.defer();
+			var coursedata = {
+				name: "Lean Startup",
+				room: "Amphitheatre Nicolas Tesla",
+				datetime: "in 7min",
+				duration: "1h30",
+				asignements: [],
+				speakers: ["Steve Blank"],
+				attendees: ["Googlers"],
+				description: "Get out of the building",
+				attendeeNumber: 1
+			};
+			deferred.resolve(coursedata);
+			return	deferred.promise;
+		}
+	};
+}])
+
 .factory('SettingFactory', ['$q','DefaultSettings', function($q, DefaultSettings){
 	return {
 		key: function(index){

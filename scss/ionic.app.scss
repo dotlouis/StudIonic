@@ -147,6 +147,16 @@ ion-content.has-header{
 	}
 }
 
+.card.course{
+	h4{
+		margin-bottom: 3px;
+	}
+	.hint{
+		color: $md-hint-text;
+		font-size: 12px;
+	}
+}
+
 /* slideUp (from down) animation */
 .slideUp{
 	transition: -webkit-transform ease .5s, opacity ease .2s;
