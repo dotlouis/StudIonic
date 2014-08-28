@@ -4,9 +4,9 @@
 			<button class="button-profile" ui-sref="app.profile"></button>
 		</div>
 	</ion-nav-bar>
-	<ion-content>
-		
-		<div ng-include="settings.templateUrl + 'changelog.html'" ng-if="settings.cardChangelog.enabled" ng-cloak class="slideUp"></div>
+	<ion-content has-bouncing="true">
+
+		<md-card partial="feedback" class="feedback slideup"></md-card>
 
 	</ion-content>
 </ion-view>

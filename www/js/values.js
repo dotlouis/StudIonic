@@ -4,7 +4,7 @@ angular.module('studionic.values',[])
 	version: 1,
 	templateUrl: "templates/cards/",
 
-	//cards
-	cardChangelog: {enabled: true },
-	cardFeedback: {enabled: true }
+	cards: {
+		"feedback":{enabled: true}
+	}
 });
