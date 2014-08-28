@@ -44,7 +44,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // =================================================================
 
 ion-content.has-header{
-	top: 49px;
+	top: 55px;
 	background-color: #efefef;
 }
 
@@ -95,7 +95,7 @@ ion-content.has-header{
 }
 
 .button-profile{
-	margin: 2px 15px;
+	margin: 5px 20px;
 	width: 34px;
 	height: 34px;
 	border-radius: 50%;
@@ -105,9 +105,9 @@ ion-content.has-header{
 }
 
 .bar-md{
-	height: 48px;
+	height: 54px;
 	.title{
-		line-height: 48px;
+		line-height: 54px;
 	}
 }
 

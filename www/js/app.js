@@ -1,4 +1,4 @@
-angular.module('studionic', ['ionic', 'studionic.controllers','studionic.factories'])
+angular.module('studionic', ['ionic','ngCordova','studionic.controllers','studionic.factories'])
 
 .run(['$ionicPlatform', function($ionicPlatform) {
 
@@ -37,7 +37,7 @@ angular.module('studionic', ['ionic', 'studionic.controllers','studionic.factori
       url: "/app",
       abstract: true,
       //templateUrl: "templates/menu.html",
-      controller: 'AppCtrl',
+      //controller: 'AppCtrl',
       resolve: {
         signedUser: function(AuthFactory, $state){
           // The signed user is implicitly injected into the controller

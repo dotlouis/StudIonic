@@ -55,12 +55,29 @@ angular.module('studionic.controllers',[])
 	};
 
 	$scope.user = signedUser;
-	//$scope.user.attributes.pic = 'img/user.jpg';
 
 }])
 
-.controller('StudLifeCtrl', ['$scope', function($scope){
-	
+.controller('StudLifeCtrl', ['$scope','$ionicPopup','$cordovaSocialSharing', function($scope, $ionicPopup, $cordovaSocialSharing){
+	$scope.tweetIntent = function(){
+		$cordovaSocialSharing.shareViaTwitter("@studapp", null, null).then(function(result) {
+		     console.log(result); 
+		 }, function(err) {
+		 	$ionicPopup.alert({
+		 	     title: 'Can\'t use Twitter',
+		 	     template: 'No twitter app found please install one'
+		 	   });
+		 });
+	};
+
+	$scope.emailIntent = function(){
+		$cordovaSocialSharing.shareViaEmail("", "Feedback", ["studapp@gmail.com"], null, null, null).then(
+		  function(result) {
+		    console.log(result);
+		  }, function(err) {
+		  	console.log(err);
+		  });
+	};
 }])
 
 .controller('ProfileCtrl', ['$scope','UserFactory', function($scope, UserFactory){
