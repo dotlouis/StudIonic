@@ -62,7 +62,11 @@ angular.module('studionic.controllers',[])
 
 }])
 
-.controller('StudLifeCtrl', ['$scope','$ionicPopup','$cordovaSocialSharing', function($scope, $ionicPopup, $cordovaSocialSharing){
+.controller('StudLifeCtrl',['$scope', function($scope){
+
+}])
+
+.controller('FeedbackCtrl', ['$scope','$ionicPopup','$cordovaSocialSharing', function($scope, $ionicPopup, $cordovaSocialSharing){
 	$scope.tweetIntent = function(){
 		$cordovaSocialSharing.shareViaTwitter("@studapp", null, null).then(function(result) {
 			console.log(result); 
