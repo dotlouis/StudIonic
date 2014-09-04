@@ -7,7 +7,7 @@ angular.module('studionic.directives',[])
 	return {
 		restrict: 'E',
 		replace: true,
-		template: '<div ng-if="$parent.settings.cards[partial].enabled" ng-include="$parent.$parent.settings.templateUrl+partial+\'Card.html\'" class="card card-md"></div>',
+		template: '<div ng-if="$parent.settings.cards[partial].enabled" ng-include="$parent.$parent.settings.templateUrl+\'cards/\'+partial+\'Card.html\'" class="card card-md"></div>',
 		scope: {
 			// shit dat iz no ez:
 			// https://docs.angularjs.org/guide/directive#directivedefinitionobject
@@ -25,6 +25,9 @@ angular.module('studionic.directives',[])
 	return {
 		restrict: 'E',
 		replace: true,
-		templateUrl: 'templates/badge.html'
+		template: '<div ng-include="$parent.$parent.settings.templateUrl+\'badges/\'+partial+\'Badge.html\'" class="badge"></div>',
+		scope: {
+			partial: '@'
+		}
 	};
 }]);

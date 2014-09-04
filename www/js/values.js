@@ -2,7 +2,7 @@ angular.module('studionic.values',[])
 
 .value('DefaultSettings',{
 	version: 1,
-	templateUrl: "templates/cards/",
+	templateUrl: "templates/",
 
 	cards: {
 		"feedback":{enabled: true},
