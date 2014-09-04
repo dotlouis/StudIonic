@@ -1,0 +1,34 @@
+<ion-view>
+	<ion-nav-bar align-title="left" class="bar bar-royal bar-transparent bar-md">
+		<div class="buttons left-buttons">
+			<button class="button button-icon ion-arrow-left-c" ui-sref="^.studlife"></button>			
+		</div>
+	</ion-nav-bar>
+
+	<ion-content padding="false" class="scroll-full">
+		<div class="header-cover">
+			<h4>{{coursedata.name}}</h4>
+			<p>{{coursedata.fulldatetime}}</p>
+		</div>
+		<div class="header-fab" ng-click="console.log('plop')">
+			<i class="ion-person-add"></i>
+		</div>
+		<div class="badge-list">
+			<badge></badge>
+			<badge></badge>
+			<badge></badge>
+			<badge></badge>
+			<badge></badge>
+		</div>
+		<div class="course-description">{{coursedata.description}}</div>
+		<ul class="assignement-list">
+			<h6>Assignements</h6>
+			<li ng-repeat="assignement in coursedata.assignements" class="item item-checkbox">
+				<label class="checkbox">
+					<input type="checkbox">
+				</label>
+				{{assignement}}
+			</li>
+		</ul>
+	</ion-content>
+</ion-view>

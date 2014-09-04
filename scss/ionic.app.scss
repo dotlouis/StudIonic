@@ -25,9 +25,10 @@ $dark:                            #444 !default;
 $md-text:				rgba(0,0,0,0.87);
 $md-secondary-text:		rgba(0,0,0,0.54);
 $md-hint-text:			rgba(0,0,0,0.26);
-$md-ividers:			rgba(0,0,0,0.12);
+$md-dividers:			rgba(0,0,0,0.12);
 
 $royal:                        $md-indigo-500 !default;
+$energized:                    $md-orange-500 !default;
 
 // =================================================================
 // Ionic style
@@ -55,6 +56,7 @@ ion-content.has-header{
 	
 	+ ion-content.has-header{
 		top: 0;
+		background-color: white;
 	}
 }
 
@@ -145,17 +147,116 @@ ion-content.has-header{
 	h3{
 		color: $royal;
 	}
+	p{
+		margin-bottom: 0;
+	}
 }
 
 .card.course{
 	h4{
 		margin-bottom: 3px;
+		font-size: 22px;
+		margin-top: 0;
 	}
 	.hint{
 		color: $md-hint-text;
-		font-size: 12px;
+		font-size: 13px;
+		margin-bottom: 0;
 	}
 }
+
+.header-cover{
+	height: 128px;
+	background-color: $royal;
+	padding: 60px 20px 20px 55px;
+
+	h4{
+		color: white;
+		font-size: 22px;
+		margin-top: 0;
+		margin-bottom: 5px;
+	}
+	p{
+		color: white;
+		font-size: 12px;
+		padding-right: 70px;
+	}
+}
+
+.header-fab{
+	position: relative;
+	height: 56px;
+	width: 56px;
+	margin-top: -28px;
+	margin-left: 75%;
+	border-radius: 50%;
+	background: white;
+	box-shadow: 0px 0px 6px -1px $md-text;
+
+	&.activated{
+		background-color: #eee;
+	}
+
+	i{
+		position: absolute;
+		left: 20px;
+		top: 18px;
+		font-size: 20px;
+		color: $royal;
+	}
+}
+
+.badge-list{
+	margin-top: 10px;
+	margin-bottom: 28px;
+	text-align: center;
+
+	.badge{
+		white-space: normal;
+		
+		.badge-item{
+			margin: auto;
+			background: url(../img/teacher.jpg);
+			background-size: cover;
+			height: 62px;
+			width: 62px;
+			border-radius: 50%;
+			border: 2px solid white;
+		}
+		.badge-label{
+			color: $md-secondary-text;
+			font-size: 12px;
+			font-weight: 500;
+			width: 62px;
+			line-height: 14px;
+			margin-top: 2px;
+		}
+	}
+}
+
+.course-description{
+	border-top: 1px solid $md-dividers;
+	padding: 15px;
+	margin: 10px;
+	color: $md-text;
+	font-size: 16px;
+}
+
+.assignement-list{
+	border-top: 1px solid $md-dividers;
+	padding: 15px;
+	margin: 10px;
+
+	h6{
+		text-transform: uppercase;
+		color: $md-secondary-text;
+	}
+
+	.item{
+		border: none;
+	}
+}
+
 
 /* slideUp (from down) animation */
 .slideUp{

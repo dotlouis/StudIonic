@@ -66,7 +66,7 @@ angular.module('studionic.controllers',[])
 
 }])
 
-.controller('FeedbackCtrl', ['$scope','$ionicPopup','$cordovaSocialSharing', function($scope, $ionicPopup, $cordovaSocialSharing){
+.controller('FeedbackCardCtrl', ['$scope','$ionicPopup','$cordovaSocialSharing', function($scope, $ionicPopup, $cordovaSocialSharing){
 	$scope.tweetIntent = function(){
 		$cordovaSocialSharing.shareViaTwitter("@studapp", null, null).then(function(result) {
 			console.log(result); 
@@ -88,10 +88,20 @@ angular.module('studionic.controllers',[])
 }])
 
 
-.controller('CourseCtrl', ['$scope','CourseFactory', function($scope, CourseFactory){
+.controller('CourseCardCtrl', ['$scope','CourseFactory', function($scope, CourseFactory){
 	CourseFactory.get().then(function(coursedata){
 		$scope.coursedata = coursedata;
 	});
+	$scope.checkin = function(){
+		console.log("checkin !");
+	};
+}])
+
+.controller('CourseCtrl', ['$scope','$stateParams','CourseFactory', function($scope, $stateParams, CourseFactory){
+	CourseFactory.get($stateParams.id).then(function(coursedata){
+		$scope.coursedata = coursedata;
+	});
+
 }])
 
 .controller('ProfileCtrl', ['$scope','UserFactory', function($scope, UserFactory){

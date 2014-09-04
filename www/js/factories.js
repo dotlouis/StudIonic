@@ -47,14 +47,15 @@ angular.module('studionic.factories', [])
 
 .factory('CourseFactory', ['$q', function($q){
 	return {
-		get: function(){
+		get: function(id){
 			var deferred = $q.defer();
 			var coursedata = {
 				name: "Lean Startup",
 				room: "Amphitheatre Nicolas Tesla",
 				datetime: "in 7min",
+				fulldatetime: "Wed 17 at 13h",
 				duration: "1h30",
-				asignements: [],
+				assignements: ["interview a CEO", "do a business model canvas"],
 				speakers: ["Steve Blank"],
 				attendees: ["Googlers"],
 				description: "Get out of the building",

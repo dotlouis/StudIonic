@@ -60,6 +60,16 @@ angular.module('studionic', ['ionic','ngCordova','studionic.controllers','studio
         }
       }
     })
+    .state('app.course', {
+      // more security: https://github.com/angular-ui/ui-router/wiki/URL-Routing#regex-parameters
+      url: "/courses/:id",
+      views: {
+        'main@app' :{
+          templateUrl: "templates/course.html",
+          controller: 'CourseCtrl'
+        }
+      }
+    })
     .state('app.profile', {
       url: "/profile",
       views: {

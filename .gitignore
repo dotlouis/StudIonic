@@ -6,3 +6,4 @@ hooks/
 plugins/android.json
 plugins/ios.json
 www/css/
+*.sublime-workspace
