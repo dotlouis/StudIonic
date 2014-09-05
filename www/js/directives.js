@@ -19,7 +19,7 @@ angular.module('studionic.directives',[])
 	return {
 		restrict: 'E',
 		replace: true,
-		template: '<div ng-if="setup.enabled && data" ng-include="setup.templateUrl" class="badge"></div>',
+		template: '<div ng-if="setup.enabled && data" ng-include="setup.templateUrl" class="badge-group"></div>',
 		scope: {
 			setup: "=",
 			data: "="

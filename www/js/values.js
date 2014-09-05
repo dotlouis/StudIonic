@@ -9,6 +9,7 @@ angular.module('studionic.values',[])
 	},
 	badges: {
 		"speaker":{enabled: true, templateUrl: "templates/badges/speakerBadge.html"},
-		"room":{enabled: true, templateUrl: "templates/badges/roomBadge.html"}
+		"room":{enabled: true, templateUrl: "templates/badges/roomBadge.html"},
+		"duration":{enabled: true, templateUrl: "templates/badges/durationBadge.html"}
 	}	
 });
