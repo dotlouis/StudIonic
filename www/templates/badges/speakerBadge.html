@@ -1,4 +1,4 @@
-<li class="badge">
+<li class="badge" ng-repeat="speaker in data">
 	<div class="badge-item" ng-style="{ 'background-image': 'url(../img/teacher.jpg)' }"></div>
-	<div class="badge-label">{{$parent.$parent.coursedata.speakers[0]}}</div>
+	<div class="badge-label">{{speaker}}</div>
 </li>

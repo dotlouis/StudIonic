@@ -7,13 +7,13 @@ angular.module('studionic.directives',[])
 	return {
 		restrict: 'E',
 		replace: true,
-		template: '<div ng-if="$parent.settings.cards[partial].enabled" ng-include="$parent.$parent.settings.templateUrl+\'cards/\'+partial+\'Card.html\'" class="card card-md"></div>',
+		template: '<div ng-if="setup.enabled" ng-include="setup.templateUrl" class="card card-md"></div>',
 		scope: {
 			// shit dat iz no ez:
 			// https://docs.angularjs.org/guide/directive#directivedefinitionobject
 			// and
 			// http://stackoverflow.com/questions/13091204/how-do-i-isolate-only-a-single-value-in-my-directive-scope
-			partial: '@'
+			setup: '='
 		}
 	};
 }])
@@ -25,9 +25,10 @@ angular.module('studionic.directives',[])
 	return {
 		restrict: 'E',
 		replace: true,
-		template: '<div ng-include="$parent.$parent.settings.templateUrl+\'badges/\'+partial+\'Badge.html\'" class="badge"></div>',
+		template: '<div ng-if="setup.enabled" ng-include="setup.templateUrl" class="badge"></div>',
 		scope: {
-			partial: '@'
+			setup: "=",
+			data: "="
 		}
 	};
 }]);

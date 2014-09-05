@@ -56,7 +56,7 @@ angular.module('studionic.factories', [])
 				fulldatetime: "Wed 17 at 13h",
 				duration: "1h30",
 				assignements: ["interview a CEO", "do a business model canvas"],
-				speakers: ["Steve Blank"],
+				speakers: ["Steve Blank", "Eric Ries"],
 				attendees: ["Googlers"],
 				description: "Get out of the building",
 				attendeeNumber: 1
