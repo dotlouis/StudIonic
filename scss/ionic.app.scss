@@ -215,13 +215,30 @@ ion-content.has-header{
 		white-space: normal;
 		
 		.badge-item{
+			position: relative;
 			margin: auto;
-			background: url(../img/teacher.jpg);
-			background-size: cover;
 			height: 62px;
 			width: 62px;
 			border-radius: 50%;
-			border: 2px solid white;
+
+			i{
+				position: absolute;
+				color: $royal;
+				font-size: 40px;
+				left: 20px;
+				top: 10px;
+			}
+
+			&.speaker{
+				background: url(../img/teacher.jpg);
+				background-size: cover;
+				border: 2px solid $royal;	
+			}
+			&.room{
+				background: white;
+				border: 2px solid $royal;
+			}
+
 		}
 		.badge-label{
 			color: $md-secondary-text;

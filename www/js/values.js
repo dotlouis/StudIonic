@@ -8,6 +8,7 @@ angular.module('studionic.values',[])
 		"course":{enabled: true, templateUrl: "templates/cards/courseCard.html"}
 	},
 	badges: {
-		"speaker":{enabled: true, templateUrl: "templates/badges/speakerBadge.html"}
+		"speaker":{enabled: true, templateUrl: "templates/badges/speakerBadge.html"},
+		"room":{enabled: true, templateUrl: "templates/badges/roomBadge.html"}
 	}	
 });

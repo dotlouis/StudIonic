@@ -13,9 +13,10 @@
 		<div class="header-fab" ng-click="console.log('plop')">
 			<i class="ion-person-add"></i>
 		</div>
-		<ul class="badge-list">
+		<div class="badge-list">
 			<badge setup="settings.badges['speaker']" data="coursedata.speakers"></badge>
-		</ul>
+			<badge setup="settings.badges['room']" data="coursedata.room"></badge>
+		</div>
 		<div class="course-description">{{coursedata.description}}</div>
 		<ul class="assignement-list">
 			<h6>Assignements</h6>

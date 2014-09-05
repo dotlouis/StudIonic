@@ -51,7 +51,7 @@ angular.module('studionic.factories', [])
 			var deferred = $q.defer();
 			var coursedata = {
 				name: "Lean Startup",
-				room: "Amphitheatre Nicolas Tesla",
+				room: {fullname: "Amphitheatre Nicolas Tesla", shortname: "Amph. Tesla"},
 				datetime: "in 7min",
 				fulldatetime: "Wed 17 at 13h",
 				duration: "1h30",

@@ -1,9 +1,6 @@
 angular.module('studionic.directives',[])
 
 .directive('mdCard', [function() {
-	// The partial attribute must be the name of the template file you
-	// should use for the card (without ".html")
-	// it also should be the same name used in the defaultSetting card value
 	return {
 		restrict: 'E',
 		replace: true,
@@ -19,13 +16,10 @@ angular.module('studionic.directives',[])
 }])
 
 .directive('badge', [function() {
-	// The partial attribute must be the name of the template file you
-	// should use for the card (without ".html")
-	// it also should be the same name used in the defaultSetting card value
 	return {
 		restrict: 'E',
 		replace: true,
-		template: '<div ng-if="setup.enabled" ng-include="setup.templateUrl" class="badge"></div>',
+		template: '<div ng-if="setup.enabled && data" ng-include="setup.templateUrl" class="badge"></div>',
 		scope: {
 			setup: "=",
 			data: "="
