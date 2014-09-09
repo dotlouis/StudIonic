@@ -44,6 +44,102 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Personnal styles
 // =================================================================
 
+html, body{
+	height: 100%;
+}
+
+.onboard{
+	height: 100%;
+	background-size: cover;
+
+	.slide{
+		height: 100%;
+		position: relative;
+		color: white;
+		background-repeat: no-repeat;
+
+		h1{
+			text-align: center;
+			color: white;
+			font-weight: 100;
+			margin-top: 0;
+			strong{
+				font-weight: bold;
+			}
+		}
+
+		p{
+			margin-top: 50px;
+			padding: 0 50px;
+			text-align: center;
+		}
+	}
+	.buttons{
+		height: 50px;
+		.register,.signin{
+			display: inline-block;
+			padding: 15px;
+		}
+		.signin{
+			float: right;
+		}
+	}
+	.next,.previous{
+		position: absolute;
+		bottom: 30px;
+		font-size: 24px;
+	}
+	.next{
+		right: 30px;
+	}
+	.previous{
+		left: 30px;
+	}
+	.slider-pager{
+		bottom: 100px;
+	}
+	.slider-pager .slider-pager-page{
+		color: white;
+	}
+	.logo{
+		width: 100%;
+		height: 150px;
+		background-image: url('../img/logobig.png');
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+		margin-top: 40px;
+	}
+	.logobig{
+		height: 200px;
+		margin-top: 40px;
+	}
+	.slide1{
+		background-image: url('../img/onboard1.jpg');
+	}
+	.slide2{
+		background-image: url('../img/onboard2.jpg');
+	}
+	.slide3{
+		background-image: url('../img/onboard3.jpg');
+	}
+	.slide4{
+		background-image: url('../img/onboard4.jpg');
+	}
+	.slide5{
+		background-image: url('../img/onboard5.jpg');
+	}
+}
+
+
+
+
+
+
+
+
+
+
 ion-content.has-header{
 	top: 55px;
 	background-color: #efefef;
@@ -271,6 +367,7 @@ ion-content.has-header{
 	margin: 10px;
 	color: $md-text;
 	font-size: 16px;
+	text-align: center;
 }
 
 .assignement-list{

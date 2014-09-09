@@ -1,11 +1,20 @@
 angular.module('studionic.controllers',[])
 
-.controller('WelcomeCtrl',['$scope','$state','$ionicPopup','AuthFactory', function($scope, $state, $ionicPopup, AuthFactory){
+.controller('WelcomeCtrl',['$scope','$state','$ionicPopup','$ionicSlideBoxDelegate','AuthFactory', function($scope, $state, $ionicPopup, $ionicSlideBoxDelegate, AuthFactory){
 	
 	$scope.user = {
 		email: "bruce@wayne.com",
 		password: "imbatman"
 	};
+
+
+	$scope.nextSlide = function() {
+	   $ionicSlideBoxDelegate.next();
+	 }
+
+	 $scope.previousSlide = function() {
+	    $ionicSlideBoxDelegate.previous();
+	  }
 
 	$scope.showLoginPopup = function(){
 		var loginPopup = $ionicPopup.show({
