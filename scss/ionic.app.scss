@@ -27,8 +27,8 @@ $md-secondary-text:		rgba(0,0,0,0.54);
 $md-hint-text:			rgba(0,0,0,0.26);
 $md-dividers:			rgba(0,0,0,0.12);
 
-$royal:                        $md-indigo-500 !default;
-$energized:                    $md-orange-500 !default;
+$royal:                        $md-indigo-800 !default;
+$energized:                    rgb(103,27,67) !default;
 
 // =================================================================
 // Ionic style
@@ -62,7 +62,7 @@ html, body{
 			text-align: center;
 			color: white;
 			font-weight: 100;
-			margin-top: 0;
+			margin: 0;
 			strong{
 				font-weight: bold;
 			}
@@ -70,49 +70,63 @@ html, body{
 
 		p{
 			margin-top: 50px;
+			margin-bottom: 30px;
 			padding: 0 50px;
 			text-align: center;
 		}
 	}
-	.buttons{
-		height: 50px;
-		.register,.signin{
-			display: inline-block;
-			padding: 15px;
+	.button{
+		margin: auto;
+		
+		&.get-started{
+			display: block;
+			padding: 0 50px;
 		}
-		.signin{
-			float: right;
+		&.learn-more{
+			font-size: 16px;
+			line-height: 38px;			
+		}
+		&.skip{
+			position: absolute;
+			right: 10px;
+		}
+		&.button-light{
+			color: white;
+		}
+		&.next,&.previous{
+			position: absolute;
+			bottom: 10px;
+			z-index: 2;
+		}
+		&.next{
+			right: 10px;
+		}
+		&.previous{
+			left: 10px;
 		}
 	}
-	.next,.previous{
-		position: absolute;
-		bottom: 30px;
-		font-size: 24px;
-	}
-	.next{
-		right: 30px;
-	}
-	.previous{
-		left: 30px;
-	}
+
 	.slider-pager{
-		bottom: 100px;
+		bottom: 29px;
+		font-size: 10px;
+		width: 76px;
+		left: 50%;
+		margin-left: -38px;
 	}
 	.slider-pager .slider-pager-page{
 		color: white;
+		margin: 0;
 	}
 	.logo{
 		width: 100%;
-		height: 150px;
+		height: 130px;
 		background-image: url('../img/logobig.png');
 		background-size: contain;
 		background-repeat: no-repeat;
 		background-position: center;
-		margin-top: 40px;
 	}
 	.logobig{
-		height: 200px;
-		margin-top: 40px;
+		height: 180px;
 	}
 	.slide1{
 		background-image: url('../img/onboard1.jpg');
@@ -126,8 +140,31 @@ html, body{
 	.slide4{
 		background-image: url('../img/onboard4.jpg');
 	}
-	.slide5{
+	.last-slide{
 		background-image: url('../img/onboard5.jpg');
+		.banner{
+			margin-top: 20px;
+			font-size: 16px;
+			text-align: center;
+			display: block;
+			text-decoration: underline;
+			color: white;
+		}
+		form{
+			margin-top: 30px;
+			label{
+				background-color: rgba(255,255,255,0.35);
+				input,.input-label{
+					color: white;
+				}
+			}
+			.signin{
+				margin: auto;
+				margin-top: 20px;
+				display: block;
+				width: 300px;
+			}
+		}
 	}
 }
 
