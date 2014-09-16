@@ -57,9 +57,6 @@ angular.module('studionic.controllers',[])
 
 }])
 
-.controller('DataCardCtrl',['$scope', function($scope){
-
-}])
 
 .controller('FeedbackCardCtrl', ['$scope','$ionicPopup','$cordovaSocialSharing', function($scope, $ionicPopup, $cordovaSocialSharing){
 	$scope.tweetIntent = function(){
@@ -99,9 +96,26 @@ angular.module('studionic.controllers',[])
 
 }])
 
-.controller('ProfileCtrl', ['$scope','UserFactory', function($scope, UserFactory){
+.controller('ProfileCtrl', ['$scope','$cordovaCamera','UserFactory', function($scope, $cordovaCamera, UserFactory){
 
-	UserFactory.get($scope.user).then(function(userdata){
+	$scope.updateProfilePicture = function(){
+		$cordovaCamera.getPicture({
+			destinationType : navigator.camera.DestinationType.DATA_URL,
+			sourceType : navigator.camera.PictureSourceType.PHOTOLIBRARY,
+			encodingType: navigator.camera.EncodingType.JPEG,
+			targetWidth: 100,
+			targetHeight: 100,
+			mediaType: navigator.camera.MediaType.PICTURE,
+			saveToPhotoAlbum: false
+		}).then(function(imageData) {
+			console.log(imageData);
+			UserFactory.setProfilePicture(imageData);
+		}, function(error) {
+			console.log(error);
+		});
+	};
+
+	UserFactory.current().then(function(userdata){
 		$scope.userdata = userdata;
 	});
 	

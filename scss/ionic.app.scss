@@ -28,7 +28,8 @@ $md-hint-text:			rgba(0,0,0,0.26);
 $md-dividers:			rgba(0,0,0,0.12);
 
 $royal:                        $md-indigo-800 !default;
-$energized:                    rgb(103,27,67) !default;
+// $energized:                    rgb(103,27,67) !default;
+$energized:                    rgba(255,255,255,0.35) !default;
 
 // =================================================================
 // Ionic style
@@ -81,6 +82,7 @@ html, body{
 		&.get-started{
 			display: block;
 			padding: 0 50px;
+			border-color: white;
 		}
 		&.learn-more{
 			font-size: 16px;
@@ -163,6 +165,7 @@ html, body{
 				margin-top: 20px;
 				display: block;
 				width: 300px;
+				border-color: white;
 			}
 		}
 	}
