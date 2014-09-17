@@ -7,13 +7,13 @@
 
 	<ion-content padding="false" class="scroll-full">
 		<div class="profile-cover"></div>
-		<div class="profile-picture" ng-click="updateProfilePicture()"></div>
+		<div class="profile-picture" ng-click="updateProfilePicture()" ng-style="{'background-image':'url('+profileSrc+')'}"></div>
 		<div class="profile-info">
 			<h2>{{userdata.get('fullname')}}</h2>
 			<p>{{userdata.get('grade')}} at {{userdata.get('school').get('name')}}</p>
 			<!-- <p>{{userdata.absences}} check in missed</p> -->
 		</div>
-		<input file type="file" accept="image/*">
+		<input file type="file" accept="image/*" ng-if="!isWebView">
 		<button class="button button-outline button-full button-assertive" ng-click="logOut()">Logout</button>
 	</ion-content>
 </ion-view>

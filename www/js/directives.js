@@ -29,19 +29,20 @@ angular.module('studionic.directives',[])
 
 .directive('file', ['UserFactory', function(UserFactory){
     return {
-        scope: {
-            file: '='
-        },
         link: function(scope, el, attrs){
             el.bind('change', function(event){
                 var files = event.target.files;
                 var file = files[0];
-                console.log(file.name);
                 var reader = new FileReader();
                 reader.onload = function(e) {
                 	var imageData = e.target.result;
-                	console.log(imageData);
-                	UserFactory.setProfilePicture(imageData);
+                	// immediately apply background image localy
+                	scope.$apply(function(){
+                		scope.profileSrc = imageData;
+                		console.log(scope.profileSrc);
+                	});
+                	// save it to the cloud
+                	//UserFactory.setProfilePicture(imageData);
                 };
                 reader.readAsDataURL(file);
             });

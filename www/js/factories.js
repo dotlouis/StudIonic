@@ -43,25 +43,26 @@ angular.module('studionic.factories', [])
 			return d1.promise;
 		},
 		setProfilePicture: function(imageData){
+			var deferred = $q.defer();
 			var currentUser = Parse.User.current();
 			var profilePicture = new Parse.File("profile_picture.jpg", { base64: imageData });
 			// first save the file itself
-			profilePicture.save().then(function() {
-			  console.log("saved");
+			profilePicture.save().then(function(savedFile) {
+				// then associate the file with the user profilepic property
+				currentUser.set("profilePicture", profilePicture);
+				currentUser.setACL(new Parse.ACL({}));
+				currentUser.save().then(function(user){
+					// return savedFile
+			  		deferred.resolve(savedFile);
+				}, function(user, error){
+			  		console.log(user, error);
+			  		deferred.reject(error);
+			  	});
 			}, function(error) {
-			  console.log(error);
+				console.log(error);
+				deferred.reject(error);
 			});
-			// then associate the file with the user profilepic property
-			currentUser.set("profilePicture", profilePicture);
-			currentUser.setACL(new Parse.ACL({}));
-			currentUser.save(null, {
-				success: function(user){
-					console.log(user);
-				},
-				error: function(user, error){
-					console.log(user, error);
-				}
-			});
+			return deferred.promise;
 		},
 		get: function(id){
 			var query =	new Parse.Query('_User');

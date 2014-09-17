@@ -45,6 +45,8 @@ angular.module('studionic.controllers',[])
 		$state.go('welcome');
 	};
 
+	$scope.platform = ionic.Platform.platform();
+	$scope.isWebView = ionic.Platform.isWebView();
 	$scope.user = signedUser;
 	SettingFactory.setDefault();
 	SettingFactory.get('settings').then(function(settings){
@@ -98,6 +100,15 @@ angular.module('studionic.controllers',[])
 
 .controller('ProfileCtrl', ['$scope','$cordovaCamera','UserFactory', function($scope, $cordovaCamera, UserFactory){
 
+	$scope.profileSrc = '../img/logo-grey.png';
+	UserFactory.current().then(function(user){
+		console.log(user);
+		$scope.userdata = user;
+		var profilePic = user.get('profilePicture');
+		if(profilePic)
+			$scope.profileSrc = profilePic.url();
+	});
+
 	$scope.updateProfilePicture = function(){
 		$cordovaCamera.getPicture({
 			destinationType : navigator.camera.DestinationType.DATA_URL,
@@ -108,15 +119,13 @@ angular.module('studionic.controllers',[])
 			mediaType: navigator.camera.MediaType.PICTURE,
 			saveToPhotoAlbum: false
 		}).then(function(imageData) {
-			console.log(imageData);
+			// immediately apply background image localy
+			$scope.profileSrc = 'data:image/jpeg;base64,'+imageData;
+			// save it to the cloud
 			UserFactory.setProfilePicture(imageData);
 		}, function(error) {
 			console.log(error);
 		});
 	};
-
-	UserFactory.current().then(function(userdata){
-		$scope.userdata = userdata;
-	});
 	
 }]);

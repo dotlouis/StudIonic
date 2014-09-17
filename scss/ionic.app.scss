@@ -214,8 +214,11 @@ ion-content.has-header{
 	margin-top: -80px;
 	margin-left: 30px;
 	border-radius: 50%;
-	background: url(../img/profile.jpg);
+	background-color: #eee;
+	background-image: url(../img/logo-grey.png);
 	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .profile-info{
