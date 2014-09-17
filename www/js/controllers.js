@@ -53,6 +53,15 @@ angular.module('studionic.controllers',[])
 		$scope.settings = settings;
 	});
 
+	// default profile icon
+	$scope.profileSrc = '../img/logo-grey.png';
+	// current user
+	$scope.userdata = signedUser;
+	// if profile pic load it
+	var profilePic = signedUser.get('profilePicture');
+	if(profilePic)
+		$scope.profileSrc = profilePic.url();
+
 }])
 
 .controller('StudLifeCtrl',['$scope', function($scope){
@@ -100,22 +109,13 @@ angular.module('studionic.controllers',[])
 
 .controller('ProfileCtrl', ['$scope','$cordovaCamera','UserFactory', function($scope, $cordovaCamera, UserFactory){
 
-	$scope.profileSrc = '../img/logo-grey.png';
-	UserFactory.current().then(function(user){
-		console.log(user);
-		$scope.userdata = user;
-		var profilePic = user.get('profilePicture');
-		if(profilePic)
-			$scope.profileSrc = profilePic.url();
-	});
-
 	$scope.updateProfilePicture = function(){
 		$cordovaCamera.getPicture({
 			destinationType : navigator.camera.DestinationType.DATA_URL,
 			sourceType : navigator.camera.PictureSourceType.PHOTOLIBRARY,
 			encodingType: navigator.camera.EncodingType.JPEG,
-			targetWidth: 100,
-			targetHeight: 100,
+			targetWidth: 500,
+			targetHeight: 500,
 			mediaType: navigator.camera.MediaType.PICTURE,
 			saveToPhotoAlbum: false
 		}).then(function(imageData) {
