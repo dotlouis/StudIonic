@@ -1,8 +1,8 @@
 angular.module('studionic.factories', [])
 
-.factory('AuthFactory', ['$q', function($q){	
+.factory('UserFactory', ['$q', function($q){
 	return {
-		currentUser: function(){
+		current: function(){
 			var deferred = $q.defer();
 			var currentUser = Parse.User.current();
 			if(currentUser)
@@ -19,45 +19,23 @@ angular.module('studionic.factories', [])
 		},
 		signUp: function(username, password){
 			return Parse.User.signUp(username, password, {email: username});
-		}
-	};
-}])
-
-.factory('UserFactory', ['$q', function($q){
-	return {
-		// same as AuthFactory for convenience
-		current: function(){
-			var d1 = $q.defer();
-			var currentUser = Parse.User.current();
-			
-			// get the school data
-			currentUser.get('school').fetch({
-				success: function(school){
-					d1.resolve(currentUser);
-				},
-				error: function(error){
-					d1.reject(error);
-				}
-			});
-
-			return d1.promise;
 		},
-		setProfilePicture: function(imageData){
+		getRoles: function(user){
+			var query = new Parse.Query(Parse.Role);
+			query.equalTo("users", user);
+			return query.find();
+		},
+		setProfilePicture: function(user, imageData){
 			var deferred = $q.defer();
-			var currentUser = Parse.User.current();
 			var profilePicture = new Parse.File("profile_picture.jpg", { base64: imageData });
 			// first save the file itself
 			profilePicture.save().then(function(savedFile) {
-				// then associate the file with the user profilepic property
-				currentUser.set("profilePicture", profilePicture);
-				currentUser.setACL(new Parse.ACL({}));
-				currentUser.save().then(function(user){
+				// then associate the file with the user profilePicture property
+				user.set("profilePicture", profilePicture);
+				user.save().then(function(){
 					// return savedFile
 			  		deferred.resolve(savedFile);
-				}, function(user, error){
-			  		console.log(user, error);
-			  		deferred.reject(error);
-			  	});
+				});
 			}, function(error) {
 				console.log(error);
 				deferred.reject(error);
@@ -65,12 +43,8 @@ angular.module('studionic.factories', [])
 			return deferred.promise;
 		},
 		get: function(id){
-			var query =	new Parse.Query('_User');
-			query.include('school');
-			return query.get(id).then(function(user){
-				// do some stuff with user
-				return course;
-			});
+			var query =	new Parse.Query(Parse.User);
+			return query.get(id);
 		},
 		create: function(options){
 			return new Course().save({
@@ -105,6 +79,42 @@ angular.module('studionic.factories', [])
 	};
 }])
 
+
+.factory('SchoolFactory', ['$q', function($q){
+	
+	var School = Parse.Object.extend('School');
+
+	return {
+		setCoverPicture: function(school, imageData){
+			var deferred = $q.defer();
+			//var currentUser = Parse.User.current();
+			var coverPicture = new Parse.File("cover_picture.jpg", { base64: imageData });
+			// first save the file itself
+			coverPicture.save().then(function(savedFile) {
+				// then associate the file with the school coverPicture property
+				school.set("coverPicture", coverPicture);
+				school.save().then(function(school){
+					// return savedFile
+			  		deferred.resolve(savedFile);
+				}, function(error){
+			  		console.log(error);
+			  		deferred.reject(error);
+			  	});
+			}, function(error) {
+				console.log(error);
+				deferred.reject(error);
+			});
+			return deferred.promise;
+		},
+		get: function(id){
+			var query =	new Parse.Query('School');
+			return query.get(id).then(function(school){
+				// do some stuff with school
+				return school;
+			});
+		},
+	};
+}])
 
 /*
 .factory('CourseFactory', ['$q', function($q){

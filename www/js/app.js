@@ -26,8 +26,8 @@ angular.module('studionic', ['ionic','ngCordova','studionic.controllers','studio
       templateUrl: "templates/welcome.html",
       controller: 'WelcomeCtrl',
       resolve: {
-        signedUser: function(AuthFactory, $state){
-          AuthFactory.currentUser().then(function(signedUser){
+        signedUser: function(UserFactory, $state){
+          UserFactory.current().then(function(signedUser){
             $state.go('app.studlife');
           });
         }
@@ -40,12 +40,12 @@ angular.module('studionic', ['ionic','ngCordova','studionic.controllers','studio
       template: '<ion-nav-view name="main" animation="slide-left-right"></ion-nav-view>',
       controller: 'AppCtrl',
       resolve: {
-        signedUser: function(AuthFactory, $state){
+        signedUser: function(UserFactory, $state){
           // The signed user is implicitly injected into the controller
           // because of the chaining of promises.
           // here we only describe the reject part but when it resolve it returns the
           // result of the parent promise.
-          return AuthFactory.currentUser().catch(function(error){
+          return UserFactory.current().catch(function(error){
             $state.go('welcome');
           });
         }

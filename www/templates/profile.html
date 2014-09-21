@@ -1,4 +1,4 @@
-<ion-view title="{{userdata.get('fullname')}}">
+<ion-view title="{{user.get('fullname')}}">
 	<ion-nav-bar align-title="left" class="bar bar-royal bar-transparent bar-md">
 		<div class="buttons left-buttons">
 			<button class="button button-icon ion-arrow-left-c" ui-sref="^.studlife"></button>			
@@ -6,12 +6,12 @@
 	</ion-nav-bar>
 
 	<ion-content padding="false" class="scroll-full">
-		<div class="profile-cover"></div>
-		<div class="profile-picture" ng-click="updateProfilePicture()" ng-style="{'background-image':'url('+profileSrc+')'}"></div>
+		<div class="profile-cover" ng-click="updateCoverPicture()" ng-style="{'background-image':'url('+coverPicture+')'}"></div>
+		<div class="profile-picture" ng-click="updateProfilePicture()" ng-style="{'background-image':'url('+profilePicture+')'}"></div>
 		<div class="profile-info">
-			<h2>{{userdata.get('fullname')}}</h2>
-			<p>{{userdata.get('grade')}} at {{userdata.get('school').get('name')}}</p>
-			<!-- <p>{{userdata.absences}} check in missed</p> -->
+			<h2>{{user.get('fullname')}}</h2>
+			<p>{{user.get('grade')}} at {{school.get('name')}}</p>
+			<!-- <p>{{user.absences}} check in missed</p> -->
 		</div>
 		<input file type="file" accept="image/*" ng-if="!isWebView">
 		<button class="button button-outline button-full button-assertive" ng-click="logOut()">Logout</button>

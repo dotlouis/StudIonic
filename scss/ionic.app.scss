@@ -204,8 +204,10 @@ ion-content.has-header{
 
 .profile-cover{
 	height: 45%;
-	background: url(../img/cover.jpg);
+	// background: url(../img/cover.jpg);
 	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 .profile-picture{

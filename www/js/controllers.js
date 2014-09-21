@@ -1,9 +1,9 @@
 angular.module('studionic.controllers',[])
 
-.controller('WelcomeCtrl',['$scope','$state','$ionicPopup','$ionicSlideBoxDelegate','AuthFactory', function($scope, $state, $ionicPopup, $ionicSlideBoxDelegate, AuthFactory){
+.controller('WelcomeCtrl',['$scope','$state','$ionicPopup','$ionicSlideBoxDelegate','UserFactory', function($scope, $state, $ionicPopup, $ionicSlideBoxDelegate, UserFactory){
 	
 	$scope.user = {
-		email: "bruce@wayne.com",
+		email: "bruce.wayne@admin.france-bs.com",
 		password: "imbatman"
 	};
 
@@ -26,7 +26,7 @@ angular.module('studionic.controllers',[])
 		else if(!$scope.user.password)
 			alert("Please enter a password");
 		else {
-			AuthFactory.signIn($scope.user.email, $scope.user.password).then(function(signedUser){
+			UserFactory.signIn($scope.user.email, $scope.user.password).then(function(signedUser){
 				$state.go('app.studlife');
 			}, function(error){
 				$ionicPopup.alert({
@@ -39,28 +39,30 @@ angular.module('studionic.controllers',[])
 
 }])
 
-.controller('AppCtrl', ['$scope','$state','AuthFactory','SettingFactory','signedUser', function($scope, $state, AuthFactory, SettingFactory, signedUser){
+.controller('AppCtrl', ['$scope','$state','UserFactory','SettingFactory','signedUser', function($scope, $state, UserFactory, SettingFactory, signedUser){
 	$scope.logOut = function(){
-		AuthFactory.logOut();
+		UserFactory.logOut();
 		$state.go('welcome');
 	};
 
 	$scope.platform = ionic.Platform.platform();
 	$scope.isWebView = ionic.Platform.isWebView();
 	$scope.user = signedUser;
+	console.log($scope.user);
 	SettingFactory.setDefault();
 	SettingFactory.get('settings').then(function(settings){
 		$scope.settings = settings;
 	});
 
+	UserFactory.getRoles(signedUser).then(function(roles){
+		$scope.roles = roles;
+	});
+
 	// default profile icon
-	$scope.profileSrc = '../img/logo-grey.png';
-	// current user
-	$scope.userdata = signedUser;
+	$scope.profilePicture = '../img/logo-grey.png';
 	// if profile pic load it
-	var profilePic = signedUser.get('profilePicture');
-	if(profilePic)
-		$scope.profileSrc = profilePic.url();
+	if(signedUser.get('profilePicture'))
+		$scope.profilePicture = signedUser.get('profilePicture').url();
 
 }])
 
@@ -107,7 +109,13 @@ angular.module('studionic.controllers',[])
 
 }])
 
-.controller('ProfileCtrl', ['$scope','$cordovaCamera','UserFactory', function($scope, $cordovaCamera, UserFactory){
+.controller('ProfileCtrl', ['$scope','$cordovaCamera','UserFactory','SchoolFactory', function($scope, $cordovaCamera, UserFactory, SchoolFactory){
+
+	SchoolFactory.get($scope.user.get('school').id).then(function(school){
+		$scope.school = school;
+		$scope.coverPicture = school.get('coverPicture').url();
+		$scope.$apply();
+	});
 
 	$scope.updateProfilePicture = function(){
 		$cordovaCamera.getPicture({
@@ -120,9 +128,36 @@ angular.module('studionic.controllers',[])
 			saveToPhotoAlbum: false
 		}).then(function(imageData) {
 			// immediately apply background image localy
-			$scope.profileSrc = 'data:image/jpeg;base64,'+imageData;
+			$scope.profilePicture = 'data:image/jpeg;base64,'+imageData;
 			// save it to the cloud
-			UserFactory.setProfilePicture(imageData);
+			UserFactory.setProfilePicture($scope.user,imageData);
+		}, function(error) {
+			console.log(error);
+		});
+	};
+
+	$scope.updateCoverPicture = function(){
+		if(!$scope.roles[0].get('name') == 'admin'){
+			console.log("Only admin can update the cover picture");
+			return;
+		}
+
+		$cordovaCamera.getPicture({
+			destinationType : navigator.camera.DestinationType.DATA_URL,
+			sourceType : navigator.camera.PictureSourceType.PHOTOLIBRARY,
+			encodingType: navigator.camera.EncodingType.JPEG,
+			targetWidth: 600,
+			targetHeight: 500,
+			mediaType: navigator.camera.MediaType.PICTURE,
+			saveToPhotoAlbum: false
+		}).then(function(imageData) {
+			// immediately apply background image localy
+			$scope.coverPicture = 'data:image/jpeg;base64,'+imageData;
+			// get the school object corresponding to the user
+			SchoolFactory.get($scope.user.get('school').id).then(function(school){
+				// save school object with cover picture to the cloud
+				SchoolFactory.setCoverPicture(school, imageData);
+			});
 		}, function(error) {
 			console.log(error);
 		});
