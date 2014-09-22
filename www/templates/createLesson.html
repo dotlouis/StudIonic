@@ -1,0 +1,23 @@
+<ion-modal-view ng-controller="CreateLessonCtrl">
+	<ion-header-bar class="bar-royal bar-md">
+	<div class="buttons left-buttons">
+			<button class="button button-icon ion-arrow-left-c" ng-click="createLessonModal.hide()"></button>			
+		</div>
+		<h1 class="title">New Lesson</h1>
+	</ion-header-bar>
+	<ion-content has-bouncing="false">
+		<div class="list">
+
+		  <label class="item item-input item-select">
+		    <div class="input-label">Course</div>
+		    <select ng-model="course" ng-change="updateStuff()" ng-options="c.get('name') for c in courses" ></select>
+		  </label>
+
+		  <label class="item item-input item-select">
+		    <div class="input-label">Attendees</div>
+		    <select ng-model="attendee" ng-change="updateStuff()" ng-options="at.get('name') for at in attendees" ></select>
+		  </label>
+
+		</div>
+	</ion-content>
+</ion-modal-view>

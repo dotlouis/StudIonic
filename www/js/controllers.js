@@ -56,6 +56,8 @@ angular.module('studionic.controllers',[])
 
 	UserFactory.getRoles(signedUser).then(function(roles){
 		$scope.roles = roles;
+		$scope.admin = ($scope.roles[0].get('name') == 'admin');
+		$scope.$apply();
 	});
 
 	// default profile icon
@@ -66,7 +68,19 @@ angular.module('studionic.controllers',[])
 
 }])
 
-.controller('StudLifeCtrl',['$scope', function($scope){
+.controller('StudLifeCtrl',['$scope','$ionicModal', function($scope, $ionicModal){
+
+	$ionicModal.fromTemplateUrl('templates/createLesson.html', {
+		scope: $scope,
+		animation: 'slide-in-up'
+	}).then(function(modal) {
+		$scope.createLessonModal = modal;
+	},function(error){console.log(error);});
+
+	//Cleanup the modal when we're done with it!
+	$scope.$on('$destroy', function() {
+	  	$scope.createLessonModal.remove();
+	});
 
 }])
 
@@ -93,21 +107,35 @@ angular.module('studionic.controllers',[])
 }])
 
 
-.controller('CourseCardCtrl', ['$scope','CourseFactory', function($scope, CourseFactory){
-	CourseFactory.get().then(function(coursedata){
-		$scope.coursedata = coursedata;
+.controller('LessonCardCtrl', ['$scope','LessonFactory', function($scope, LessonFactory){
+	LessonFactory.get().then(function(lesson){
+		$scope.lesson = lesson;
 	});
 	$scope.checkin = function(){
 		console.log("checkin !");
 	};
 }])
 
-.controller('CourseCtrl', ['$scope','$stateParams','CourseFactory', function($scope, $stateParams, CourseFactory){
-	CourseFactory.get($stateParams.id).then(function(coursedata){
-		$scope.coursedata = coursedata;
+.controller('LessonCtrl', ['$scope','$stateParams','LessonFactory', function($scope, $stateParams, LessonFactory){
+	LessonFactory.get($stateParams.id).then(function(lesson){
+		$scope.lesson = lesson;
 	});
 
 }])
+
+.controller('CreateLessonCtrl', ['$scope','$stateParams','CourseFactory','RoleFactory', function($scope, $stateParams, CourseFactory, RoleFactory){
+	CourseFactory.getAll().then(function(courses){
+		$scope.courses = courses;
+		console.log(courses);
+		$scope.$apply();
+	});
+	RoleFactory.getGroups().then(function(groups){
+		$scope.attendees = groups;
+		console.log(groups);
+		$scope.$apply();
+	});
+}])
+
 
 .controller('ProfileCtrl', ['$scope','$cordovaCamera','UserFactory','SchoolFactory', function($scope, $cordovaCamera, UserFactory, SchoolFactory){
 
@@ -137,7 +165,7 @@ angular.module('studionic.controllers',[])
 	};
 
 	$scope.updateCoverPicture = function(){
-		if(!$scope.roles[0].get('name') == 'admin'){
+		if(!$scope.admin){
 			console.log("Only admin can update the cover picture");
 			return;
 		}

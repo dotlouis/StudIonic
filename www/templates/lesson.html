@@ -7,21 +7,21 @@
 
 	<ion-content padding="false" class="scroll-full">
 		<div class="header-cover">
-			<h4>{{coursedata.name}}</h4>
-			<p>{{coursedata.fulldatetime}}</p>
+			<h4>{{lesson.name}}</h4>
+			<p>{{lesson.fulldatetime}}</p>
 		</div>
 		<div class="header-fab" ng-click="console.log('plop')">
 			<i class="ion-person-add"></i>
 		</div>
 		<div class="badge-list">
-			<badge setup="settings.badges['speaker']" data="coursedata.speakers"></badge>
-			<badge setup="settings.badges['room']" data="coursedata.room"></badge>
-			<badge setup="settings.badges['duration']" data="coursedata.duration"></badge>
+			<badge setup="settings.badges['speaker']" data="lesson.speakers"></badge>
+			<badge setup="settings.badges['room']" data="lesson.room"></badge>
+			<badge setup="settings.badges['duration']" data="lesson.duration"></badge>
 		</div>
-		<div class="course-description">{{coursedata.description}}</div>
+		<div class="course-description">{{lesson.description}}</div>
 		<ul class="assignement-list">
 			<h6>Assignements</h6>
-			<li ng-repeat="assignement in coursedata.assignements" class="item item-checkbox">
+			<li ng-repeat="assignement in lesson.assignements" class="item item-checkbox">
 				<label class="checkbox">
 					<input type="checkbox">
 				</label>
