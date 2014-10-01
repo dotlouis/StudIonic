@@ -1,6 +1,6 @@
 angular.module('studionic', ['ionic','ngCordova','studionic.controllers','studionic.factories','studionic.values','studionic.directives'])
 
-.run(['$ionicPlatform', function($ionicPlatform) {
+.run(['$rootScope','$ionicPlatform', function($rootScope, $ionicPlatform) {
 
   Parse.initialize("kM564gKOHtrqKdpby7lPyodnot5Pdg2o9z9XgHk5", "r0q04g2xEKVSzkOHmoQtzFLokP4pU2qZHXSaGQlp");
 
@@ -14,10 +14,14 @@ angular.module('studionic', ['ionic','ngCordova','studionic.controllers','studio
       StatusBar.styleDefault();
     }
   });
+
+  // access to the plateform from the whole app
+  $rootScope.platform = ionic.Platform.platform();
+
 }])
 
 .config(['$stateProvider','$urlRouterProvider','$logProvider', function($stateProvider, $urlRouterProvider, $logProvider) {
-  
+
   // Whether the application will log debug messages or not
   $logProvider.debugEnabled(true);
 
