@@ -1,7 +1,7 @@
 <ion-view title="{{user.get('fullname')}}">
 	<ion-nav-bar align-title="left" class="bar bar-royal bar-transparent bar-md">
 		<div class="buttons left-buttons">
-			<button class="button button-icon ion-arrow-left-c" ui-sref="^.studlife"></button>			
+			<button class="button button-icon ion-arrow-left-c" ui-sref="^.studlife"></button>
 		</div>
 	</ion-nav-bar>
 
@@ -13,7 +13,6 @@
 			<p>{{user.get('grade')}} at {{school.get('name')}}</p>
 			<!-- <p>{{user.absences}} check in missed</p> -->
 		</div>
-		<input file type="file" accept="image/*" ng-if="!isWebView">
 		<button class="button button-outline button-full button-assertive" ng-click="logOut()">Logout</button>
 	</ion-content>
 </ion-view>
