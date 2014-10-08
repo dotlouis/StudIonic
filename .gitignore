@@ -1,9 +1,7 @@
 node_modules/
 www/lib/
-merge/
+merges/
 platforms/
 hooks/
-plugins/android.json
-plugins/ios.json
+plugins/
 www/css/
-*.sublime-workspace

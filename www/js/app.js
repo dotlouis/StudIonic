@@ -2,8 +2,6 @@ angular.module('studionic', ['ionic','ngCordova','studionic.controllers','studio
 
 .run(['$rootScope','$ionicPlatform', function($rootScope, $ionicPlatform) {
 
-  Parse.initialize("kM564gKOHtrqKdpby7lPyodnot5Pdg2o9z9XgHk5", "r0q04g2xEKVSzkOHmoQtzFLokP4pU2qZHXSaGQlp");
-
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
