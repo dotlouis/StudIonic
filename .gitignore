@@ -5,3 +5,4 @@ platforms/
 hooks/
 plugins/
 www/css/
+test/coverage/

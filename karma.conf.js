@@ -15,7 +15,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        'www/js/parse-1.3.0.min.js',
+        // Librairies required. Loaded in order
+        'www/lib/parse-js-sdk/lib/parse.js',
         'www/lib/angular/angular.js',
         'www/lib/angular-animate/angular-animate.js',
         'www/lib/angular-sanitize/angular-sanitize.js',
@@ -25,12 +26,16 @@ module.exports = function(config) {
         'www/lib/ionic/js/ionic.js',
         'www/lib/ngCordova/dist/ng-cordova.js',
         'www/lib/ngCordova/dist/ng-cordova-mocks.js',
+
+        // Needed to instandiate each modules first
         'www/js/controllers/bootstrap.js/',
         'www/js/factories/bootstrap.js',
         'www/js/directives/bootstrap.js',
+
+        // code of modules loaded afterwards
         'www/js/**/*.js',
-        'www/js/values.js',
-        'www/js/app.js',
+
+        // tests
         'test/unit/**/*.js'
     ],
 
@@ -43,13 +48,17 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+        // source files, that you wanna generate coverage for
+        // do not include tests or libraries
+        // (these files will be instrumented by Istanbul)
+        'www/js/**/*.js': ['coverage']
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['spec'],
+    reporters: ['spec', 'coverage'],
 
 
     // web server port
@@ -68,8 +77,15 @@ module.exports = function(config) {
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: false,
 
+    // karma-coverage
+    coverageReporter: {
+        reporters:[
+            {type: 'html', dir:'test/coverage/'},
+            {type: 'text-summary'}
+        ],
+    },
 
-    // karma-dordova-launcher
+    // karma-cordova-launcher
     cordovaSettings: {
       platforms: ['android'],
       plugins: [

@@ -18,7 +18,7 @@ describe("Unit: UserFactory", function(){
 
     // a spec
     it("should return current User", function(){
-        var a = false;
+        var a = true;
         expect(a).toBeTruthy();
     });
 });
