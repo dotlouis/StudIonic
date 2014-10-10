@@ -58,7 +58,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['spec', 'coverage'],
+    reporters: ['spec'],
 
 
     // web server port
@@ -74,8 +74,7 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
 
 
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+
 
     // karma-coverage
     coverageReporter: {
@@ -102,9 +101,14 @@ module.exports = function(config) {
         // 'Cordova'
     ],
 
+    // autoWatch=true implies singleRun=false for the process not to quit and continuously watching file changes
+    // autoWatch=false implies singleRun=true for karma to report anything
+
+    // enable / disable watching file and executing tests whenever any file changes
+    autoWatch: true,
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true
+    singleRun: false
   });
 };
