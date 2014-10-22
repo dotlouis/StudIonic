@@ -3,8 +3,8 @@ angular.module('studionic.controllers')
 .controller('WelcomeCtrl',['$scope','$state','$ionicPopup','$ionicSlideBoxDelegate','UserFactory', function($scope, $state, $ionicPopup, $ionicSlideBoxDelegate, UserFactory){
 
     $scope.user = {
-        email: "bruce.wayne@student.france-bs.com",
-        password: "imbatman"
+        email: "larry.page@admin.france-bs.com",
+        password: "imlarry"
     };
 
 

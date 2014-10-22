@@ -1,4 +1,4 @@
-<ion-view title="{{user.get('fullname')}}">
+<ion-view title="{{user.fullname}}">
 	<ion-nav-bar align-title="left" class="bar bar-royal bar-transparent bar-md">
 		<div class="buttons left-buttons">
 			<button class="button button-icon ion-arrow-left-c" ui-sref="^.studlife"></button>
@@ -9,8 +9,8 @@
 		<div class="profile-cover" ng-click="updateCoverPicture()" ng-style="{'background-image':'url('+coverPicture+')'}"></div>
 		<div class="profile-picture" ng-click="updateProfilePicture()" ng-style="{'background-image':'url('+profilePicture+')'}"></div>
 		<div class="profile-info">
-			<h2>{{user.get('fullname')}}</h2>
-			<p>{{user.get('grade')}} at {{school.get('name')}}</p>
+			<h2>{{user.fullname}}</h2>
+			<p>{{user.grade}} at {{school.name}}</p>
 			<!-- <p>{{user.absences}} check in missed</p> -->
 		</div>
 		<button class="button button-outline button-full button-assertive" ng-click="logOut()">Logout</button>

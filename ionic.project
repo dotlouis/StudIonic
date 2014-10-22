@@ -1,5 +1,13 @@
 {
   "name": "Studionic",
   "app_id": "2f1cedd5",
-  "sass": true
+  "sass": true,
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
 }

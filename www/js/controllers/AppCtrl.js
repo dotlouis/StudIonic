@@ -12,12 +12,6 @@ angular.module('studionic.controllers')
         $scope.settings = settings;
     });
 
-    // UserFactory.getRoles(signedUser).then(function(roles){
-    //     $scope.roles = roles;
-    //     $scope.admin = ($scope.roles[0].get('name') == 'admin');
-    //     $scope.$apply();
-    // });
-
     // default profile icon
     $scope.profilePicture = '../img/logo-grey.png';
     // if profile pic load it

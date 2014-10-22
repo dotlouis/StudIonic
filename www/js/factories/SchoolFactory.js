@@ -32,5 +32,15 @@ angular.module('studionic.factories')
     ,{
     });
 
+    Object.defineProperty(School.prototype, "nickname", {
+        get: function() { return this.get("nickname"); },
+        set: function(nickname) { this.set("nickname", nickname); }
+    });
+
+    Object.defineProperty(School.prototype, "name", {
+        get: function() { return this.get("name"); },
+        set: function(name) { this.set("name", name); }
+    });
+
     return School;
 }]);

@@ -8,10 +8,31 @@ angular.module('studionic.factories')
     var User = Parse.User.extend(
     // Instance methods
     {
+        // called at object creation
+        // https://parse.com/docs/js/symbols/Parse.Object.html#.extend
+        initialize: function(){
+            var self = this;
+        },
         getRoles: function(){
             var query = new Parse.Query(Parse.Role);
             query.equalTo("users", this);
             return query.find();
+        },
+        getSchools: function(){
+            var query = new Parse.Query('School');
+            query.equalTo("users", this);
+            return query.find();
+        },
+        isAdmin: function(){
+            var query = new Parse.Query(Parse.Role);
+            query.equalTo("name", "admin");
+            query.equalTo("users", this);
+            return query.first().then(function(adminRole) {
+                if (adminRole)
+                    return true;
+                else
+                    return false;
+            });
         },
         setProfilePicture: function(imageData){
             var deferred = $q.defer();
@@ -38,8 +59,13 @@ angular.module('studionic.factories')
         current: function(){
             var deferred = $q.defer();
             var currentUser = Parse.User.current();
-            if(currentUser)
-                deferred.resolve(currentUser);
+            if(currentUser){
+                // add a property for role (a cleaner way to do this would be nice)
+                currentUser.isAdmin().then(function(isAdmin){
+                    currentUser.isAdmin = isAdmin;
+                    deferred.resolve(currentUser);
+                });
+            }
             else
                 deferred.reject("No current user");
             return deferred.promise;
@@ -52,6 +78,16 @@ angular.module('studionic.factories')
     Object.defineProperty(User.prototype, "username", {
         get: function() { return this.get("username"); },
         set: function(username) { this.set("username", username); }
+    });
+
+    Object.defineProperty(User.prototype, "fullname", {
+        get: function() { return this.get("fullname"); },
+        set: function(fullname) { this.set("fullname", fullname); }
+    });
+
+    Object.defineProperty(User.prototype, "grade", {
+        get: function() { return this.get("grade"); },
+        set: function(grade) { this.set("grade", grade); }
     });
 
     return User;
