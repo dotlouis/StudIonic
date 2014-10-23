@@ -78,7 +78,7 @@ html, body{
 	}
 	.button{
 		margin: auto;
-		
+
 		&.get-started{
 			display: block;
 			padding: 0 50px;
@@ -86,7 +86,7 @@ html, body{
 		}
 		&.learn-more{
 			font-size: 16px;
-			line-height: 38px;			
+			line-height: 38px;
 		}
 		&.skip{
 			position: absolute;
@@ -189,7 +189,7 @@ ion-content.has-header{
 	border: none;
 	background-color: rgba(0, 0, 0, 0.3);
 	background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent);
-	
+
 	+ ion-content.has-header{
 		top: 0;
 		background-color: white;
@@ -245,6 +245,7 @@ ion-content.has-header{
 	border: 2px solid white;
 	//background: url(../img/profile.jpg);
 	background-size: cover;
+	background-position: center;
 }
 
 .bar-md{
@@ -360,7 +361,7 @@ ion-content.has-header{
 	.badge{
 		white-space: normal;
 		vertical-align: top;
-		
+
 		.badge-item{
 			position: relative;
 			margin: auto;

@@ -6,11 +6,11 @@
 	</ion-nav-bar>
 
 	<ion-content padding="false" class="scroll-full">
-		<div class="profile-cover" ng-click="updateCoverPicture()" ng-style="{'background-image':'url('+coverPicture+')'}"></div>
-		<div class="profile-picture" ng-click="updateProfilePicture()" ng-style="{'background-image':'url('+profilePicture+')'}"></div>
+		<div class="profile-cover" ng-click="updateCoverPicture()" ng-style="{'background-image':'url('+user.school.coverPicture.url()+')'}"></div>
+		<div class="profile-picture" ng-click="updateProfilePicture()" ng-style="{'background-image':'url('+user.profilePicture.url()+')'}"></div>
 		<div class="profile-info">
 			<h2>{{user.fullname}}</h2>
-			<p>{{user.grade}} at {{school.name}}</p>
+			<p>{{user.role.name}} at {{user.school.name}}</p>
 			<!-- <p>{{user.absences}} check in missed</p> -->
 		</div>
 		<button class="button button-outline button-full button-assertive" ng-click="logOut()">Logout</button>

@@ -3,7 +3,7 @@
 angular.module('studionic.factories')
 
 // Extends Parse.User
-.factory('UserFactory', ['$q', function($q){
+.factory('UserFactory', ['$q','RoleFactory','SchoolFactory', function($q, RoleFactory, SchoolFactory){
 
     var User = Parse.User.extend(
     // Instance methods
@@ -13,18 +13,20 @@ angular.module('studionic.factories')
         initialize: function(){
             var self = this;
         },
-        getRoles: function(){
-            var query = new Parse.Query(Parse.Role);
+        // For now the first role is the one
+        getRole: function(){
+            var query = new Parse.Query(RoleFactory);
             query.equalTo("users", this);
-            return query.find();
+            return query.first();
         },
-        getSchools: function(){
-            var query = new Parse.Query('School');
+        // For now the first school is the one
+        getSchool: function(){
+            var query = new Parse.Query(SchoolFactory);
             query.equalTo("users", this);
-            return query.find();
+            return query.first();
         },
         isAdmin: function(){
-            var query = new Parse.Query(Parse.Role);
+            var query = new Parse.Query(RoleFactory);
             query.equalTo("name", "admin");
             query.equalTo("users", this);
             return query.first().then(function(adminRole) {
@@ -59,15 +61,21 @@ angular.module('studionic.factories')
         current: function(){
             var deferred = $q.defer();
             var currentUser = Parse.User.current();
+
             if(currentUser){
-                // add a property for role (a cleaner way to do this would be nice)
-                currentUser.isAdmin().then(function(isAdmin){
-                    currentUser.isAdmin = isAdmin;
+                var p2 = currentUser.getRole();
+                var p3 = currentUser.getSchool();
+
+                Parse.Promise.when(p2,p3).then(function(role, school){
+                    currentUser.school = school;
+                    currentUser.role = role;
                     deferred.resolve(currentUser);
                 });
+
             }
             else
                 deferred.reject("No current user");
+
             return deferred.promise;
         }
     });
@@ -80,6 +88,16 @@ angular.module('studionic.factories')
         set: function(username) { this.set("username", username); }
     });
 
+    Object.defineProperty(User.prototype, "nickname", {
+        get: function() { return this.get("nickname"); },
+        set: function(nickname) { this.set("nickname", nickname); }
+    });
+
+    Object.defineProperty(User.prototype, "email", {
+        get: function() { return this.get("email"); },
+        set: function(email) { this.set("email", email); }
+    });
+
     Object.defineProperty(User.prototype, "fullname", {
         get: function() { return this.get("fullname"); },
         set: function(fullname) { this.set("fullname", fullname); }
@@ -88,6 +106,11 @@ angular.module('studionic.factories')
     Object.defineProperty(User.prototype, "grade", {
         get: function() { return this.get("grade"); },
         set: function(grade) { this.set("grade", grade); }
+    });
+
+    Object.defineProperty(User.prototype, "profilePicture", {
+        get: function() { return this.get("profilePicture"); },
+        set: function(profilePicture) { this.set("profilePicture", profilePicture); }
     });
 
     return User;

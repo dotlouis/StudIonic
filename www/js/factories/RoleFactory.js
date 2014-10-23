@@ -25,5 +25,15 @@ angular.module('studionic.factories')
         }
     });
 
+    Object.defineProperty(Role.prototype, "name", {
+        get: function() { return this.get("name"); },
+        set: function(name) { this.set("name", name); }
+    });
+
+    Object.defineProperty(Role.prototype, "nickname", {
+        get: function() { return this.get("nickname"); },
+        set: function(nickname) { this.set("nickname", nickname); }
+    });
+
     return Role;
 }]);

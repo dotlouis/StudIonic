@@ -1,7 +1,7 @@
 <ion-view title="Studapp">
 	<ion-nav-bar align-title="center" class="bar bar-royal bar-md">
 		<div class="buttons left-buttons">
-			<button class="button-profile" ng-style="{'background-image':'url('+profilePicture+')'}" ui-sref="^.profile"></button>
+			<button class="button-profile" ng-style="{'background-image':'url('+user.profilePicture.url()+')'}" ui-sref="^.profile"></button>
 		</div>
 	</ion-nav-bar>
 	<div class="fab" ng-click="createLessonModal.show()" ng-if="user.isAdmin"><i class="ion-plus-round"></i></div>

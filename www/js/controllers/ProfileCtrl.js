@@ -1,12 +1,7 @@
 angular.module('studionic.controllers')
 
-.controller('ProfileCtrl', ['$scope','$cordovaCamera','UserFactory','SchoolFactory', function($scope, $cordovaCamera, UserFactory, SchoolFactory){
+.controller('ProfileCtrl', ['$scope','$cordovaCamera', function($scope, $cordovaCamera){
 
-    SchoolFactory.get($scope.user.get('school').id).then(function(school){
-        $scope.school = school;
-        $scope.coverPicture = school.get('coverPicture').url();
-        $scope.$apply();
-    });
 
     $scope.updateProfilePicture = function(){
         $cordovaCamera.getPicture({
@@ -28,7 +23,7 @@ angular.module('studionic.controllers')
     };
 
     $scope.updateCoverPicture = function(){
-        if(!$scope.admin){
+        if($scope.user.role.name != 'admin'){
             console.log("Only admin can update the cover picture");
             return;
         }
@@ -43,12 +38,9 @@ angular.module('studionic.controllers')
             saveToPhotoAlbum: false
         }).then(function(imageData) {
             // immediately apply background image localy
-            $scope.coverPicture = 'data:image/jpeg;base64,'+imageData;
-            // get the school object corresponding to the user
-            SchoolFactory.get($scope.user.get('school').id).then(function(school){
-                // save school object with cover picture to the cloud
-                school.setCoverPicture(imageData);
-            });
+            $scope.user.school.coverPicture = 'data:image/jpeg;base64,'+imageData;
+            // save school object with cover picture to the cloud
+            $scope.user.school.setCoverPicture(imageData);
         }, function(error) {
             console.log(error);
         });

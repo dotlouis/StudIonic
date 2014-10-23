@@ -12,10 +12,5 @@ angular.module('studionic.controllers')
         $scope.settings = settings;
     });
 
-    // default profile icon
-    $scope.profilePicture = '../img/logo-grey.png';
-    // if profile pic load it
-    if(signedUser.get('profilePicture'))
-        $scope.profilePicture = signedUser.get('profilePicture').url();
 
 }]);
