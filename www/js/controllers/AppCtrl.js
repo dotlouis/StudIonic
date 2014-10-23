@@ -7,9 +7,8 @@ angular.module('studionic.controllers')
     };
 
     // Used to clear history after signinIn or singinUp
-    // see https://trello.com/c/r1qOsxpo/13-clear-back-history-for-android-after-login-singing-up
+    // see https://github.com/studapp/Studionic/issues/2
     $ionicViewService.clearHistory();
-    console.log($ionicViewService._getHistory());
 
     $scope.user = signedUser;
     SettingFactory.setDefault();
