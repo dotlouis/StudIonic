@@ -1,64 +1,64 @@
 <ion-slide-box show-pager="true" class="onboard">
-  <ion-slide>
-    <div class="slide slide1">
-    	<div class="logo logobig"></div>
-    	<h1><strong>Stud</strong>app</h1>
-    	<p>Bring modern communication and workflow to your school</p>
-        <button class="button button-energized get-started" ng-click="lastSlide()">Get Started</button>
-    	<button class="next button icon-right ion-chevron-right button-clear button-light learn-more" ng-click="nextSlide()">Learn more</button>
-    </div>
-  </ion-slide>
+    <ion-slide>
+        <div class="slide slide1">
+            <div class="logo logobig"></div>
+            <h1><strong>Stud</strong>app</h1>
+            <p>Bring modern communication and workflow to your school</p>
+            <button class="button button-energized get-started" ng-click="lastSlide()">Get Started</button>
+            <button class="next button icon-right ion-chevron-right button-clear button-light learn-more" ng-click="nextSlide()">Learn more</button>
+        </div>
+    </ion-slide>
 
-  <ion-slide>
-    <div class="slide slide2">
-        <button class="skip button button-clear button-light" ng-click="lastSlide()">Skip</button>
-    	<div class="logo"></div>
-    	<h1>For <strong>Students</strong></h1>
-    	<p>As students, we know what we are talking about. You'll just have to trust us</p>
-        <button class="previous button icon ion-chevron-left button-clear button-light" ng-click="previousSlide()"></button>
-    	<button class="next button icon ion-chevron-right button-clear button-light" ng-click="nextSlide()"></button>
-    </div>
-  </ion-slide>
-  <ion-slide>
-    <div class="slide slide3">
-       <button class="skip button button-clear button-light" ng-click="lastSlide()">Skip</button>
-    	<div class="logo"></div>
-    	<h1>For <strong>Teachers</strong></h1>
-    	<p>As students, we met teachers everyday. Asking them what problems they wanted to resolve was an easy task</p>
-        <button class="previous button icon ion-chevron-left button-clear button-light" ng-click="previousSlide()"></button>
-        <button class="next button icon ion-chevron-right button-clear button-light" ng-click="nextSlide()"></button>
-    </div>
-  </ion-slide>
-  <ion-slide>
-    <div class="slide slide4">
-       <button class="skip button button-clear button-light" ng-click="lastSlide()">Skip</button>
-    	<div class="logo"></div>
-    	<h1>For <strong>Schools</strong></h1>
-    	<p>As students, we have been trought several grades in different schoo. It remains one question: why exchanges with administration are so long ?</p>
-       <button class="previous button icon ion-chevron-left button-clear button-light" ng-click="previousSlide()"></button>
-        <button class="next button icon ion-chevron-right button-clear button-light" ng-click="nextSlide()"></button>
-    </div>
-  </ion-slide>
-  <ion-slide>
-    <div class="slide last-slide">
-        <div class="logo"></div>
-        <h1><strong>Login</strong></h1>
-        <form ng-submit="logIn()" class="list">
-          <label class="item item-input">
-            <span class="input-label">Email</span>
-            <input type="text" ng-model="user.email">
-          </label>
-          <label class="item item-input">
-            <span class="input-label">Password</span>
-            <input type="password" ng-model="user.password">
-          </label>
-          <input value="Sign In" type="submit" class="button button-energized signin"/>
-        </form>
-    	<a href="#" class="banner">
-            Want to bring Studapp to your school ?
-        </a>
+    <ion-slide>
+        <div class="slide slide2">
+            <button class="skip button button-clear button-light" ng-click="lastSlide()">Skip</button>
+            <div class="logo"></div>
+            <h1>For <strong>Students</strong></h1>
+            <p>As students, we know what we are talking about. You'll just have to trust us</p>
+            <button class="previous button icon ion-chevron-left button-clear button-light" ng-click="previousSlide()"></button>
+            <button class="next button icon ion-chevron-right button-clear button-light" ng-click="nextSlide()"></button>
+        </div>
+    </ion-slide>
+    <ion-slide>
+        <div class="slide slide3">
+            <button class="skip button button-clear button-light" ng-click="lastSlide()">Skip</button>
+            <div class="logo"></div>
+            <h1>For <strong>Teachers</strong></h1>
+            <p>As students, we met teachers everyday. Asking them what problems they wanted to resolve was an easy task</p>
+            <button class="previous button icon ion-chevron-left button-clear button-light" ng-click="previousSlide()"></button>
+            <button class="next button icon ion-chevron-right button-clear button-light" ng-click="nextSlide()"></button>
+        </div>
+    </ion-slide>
+    <ion-slide>
+        <div class="slide slide4">
+            <button class="skip button button-clear button-light" ng-click="lastSlide()">Skip</button>
+            <div class="logo"></div>
+            <h1>For <strong>Schools</strong></h1>
+            <p>As students, we have been trought several grades in different schoo. It remains one question: why exchanges with administration are so long ?</p>
+            <button class="previous button icon ion-chevron-left button-clear button-light" ng-click="previousSlide()"></button>
+            <button class="next button icon ion-chevron-right button-clear button-light" ng-click="nextSlide()"></button>
+        </div>
+    </ion-slide>
+    <ion-slide>
+        <div class="slide last-slide">
+            <div class="logo"></div>
+            <h1><strong>Login</strong></h1>
+            <form ng-submit="logIn()" class="list">
+                <label class="item item-input">
+                    <span class="input-label">Email</span>
+                    <input type="text" ng-model="user.email">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Password</span>
+                    <input type="password" ng-model="user.password">
+                </label>
+                <input value="Sign In" type="submit" class="button button-energized signin"/>
+            </form>
+            <a href="#" class="banner">
+                Want to bring Studapp to your school ?
+            </a>
 
-        <button class="previous button icon ion-chevron-left button-clear button-light" ng-click="previousSlide()"></button>
-    </div>
-  </ion-slide>
+            <button class="previous button icon ion-chevron-left button-clear button-light" ng-click="previousSlide()"></button>
+        </div>
+    </ion-slide>
 </ion-slide-box>
