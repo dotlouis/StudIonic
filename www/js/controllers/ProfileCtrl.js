@@ -5,11 +5,12 @@ angular.module('studionic.controllers')
 
     $scope.updateProfilePicture = function(){
         $cordovaCamera.getPicture({
+            quality: 75,
             destinationType : navigator.camera.DestinationType.DATA_URL,
             sourceType : navigator.camera.PictureSourceType.PHOTOLIBRARY,
             encodingType: navigator.camera.EncodingType.JPEG,
-            targetWidth: 500,
-            targetHeight: 500,
+            targetWidth: 640,
+            targetHeight: 640,
             mediaType: navigator.camera.MediaType.PICTURE,
             saveToPhotoAlbum: false
         }).then(function(imageData) {
@@ -29,11 +30,12 @@ angular.module('studionic.controllers')
         }
 
         $cordovaCamera.getPicture({
+            quality: 75,
             destinationType : navigator.camera.DestinationType.DATA_URL,
             sourceType : navigator.camera.PictureSourceType.PHOTOLIBRARY,
             encodingType: navigator.camera.EncodingType.JPEG,
-            targetWidth: 600,
-            targetHeight: 500,
+            targetWidth: 1080,
+            targetHeight: 1920,
             mediaType: navigator.camera.MediaType.PICTURE,
             saveToPhotoAlbum: false
         }).then(function(imageData) {
