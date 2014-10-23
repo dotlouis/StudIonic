@@ -477,3 +477,11 @@ ion-content.has-header{
 		color: $royal;
 	}
 }
+
+
+.popover{
+	height: inherit;
+	.list{
+		margin-bottom: 0;
+	}
+}

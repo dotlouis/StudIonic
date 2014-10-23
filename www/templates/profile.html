@@ -1,13 +1,17 @@
-<ion-view title="{{user.fullname}}">
+<ion-view>
 	<ion-nav-bar align-title="left" class="bar bar-royal bar-transparent bar-md">
 		<div class="buttons left-buttons">
 			<button class="button button-icon ion-arrow-left-c" ui-sref="^.studlife"></button>
 		</div>
+		<h1 class="title">{{user.fullname}}</h1>
+		<div class="buttons right-buttons">
+			<button class="button button-icon ion-more" ng-click="popover.show($event)"></button>
+		</div>
 	</ion-nav-bar>
 
 	<ion-content padding="false" class="scroll-full">
-		<div class="profile-cover" ng-click="updateCoverPicture()" ng-style="{'background-image':'url('+user.school.coverPicture.url()+')'}"></div>
-		<div class="profile-picture" ng-click="updateProfilePicture()" ng-style="{'background-image':'url('+user.profilePicture.url()+')'}"></div>
+		<div class="profile-cover" ng-style="{'background-image':'url('+user.school.coverPicture.url()+')'}"></div>
+		<div class="profile-picture" ng-style="{'background-image':'url('+user.profilePicture.url()+')'}"></div>
 		<div class="profile-info">
 			<h2>{{user.fullname}}</h2>
 			<p>{{user.role.name}} at {{user.school.name}}</p>
@@ -16,3 +20,12 @@
 		<button class="button button-outline button-full button-assertive" ng-click="logOut()">Logout</button>
 	</ion-content>
 </ion-view>
+
+<script id="profilePopover.html" type="text/ng-template">
+<ion-popover-view>
+	<ul class="list">
+    	<li class="item" ng-if="user.role.name == 'admin'" ng-click="updateCoverPicture()">Edit Cover Picture</li>
+		<li class="item" ng-click="updateProfilePicture()">Edit Profile Picture</li>
+	</ul>
+</ion-popover-view>
+</script>
