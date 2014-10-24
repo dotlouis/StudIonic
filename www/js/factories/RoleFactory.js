@@ -9,7 +9,7 @@ angular.module('studionic.factories')
     // Class methods
     ,{
         getAll: function(){
-            var query = new Parse.Query(Parse.Role);
+            var query = new Parse.Query(this);
             return query.find().then(function(roles){
                 // do some stuff with roles
                 return roles;
@@ -17,7 +17,7 @@ angular.module('studionic.factories')
         },
         getTeachers: function(){
             // TODO: add school to filter teachers of only one school
-            var query = new Parse.Query(Parse.Role);
+            var query = new Parse.Query(this);
             query.equalTo('name','teacher');
             return query.first().then(function(teacherRole){
                 return teacherRole.getUsers().query().find();
