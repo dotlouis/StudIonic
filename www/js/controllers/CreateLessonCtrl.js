@@ -33,6 +33,9 @@ angular.module('studionic.controllers')
             if(!this.selectedRoom)
                 throw "Please select a Room";
 
+            // lesson start tomorrow at 8AM and ends 2 hours later
+            lesson.start = moment().startOf('day').add(1,'days').add(9, 'hours');
+            lesson.end = moment(lesson.start).add(2,'hours');
 
             lesson.relation("course").add(this.selectedCourse);
             lesson.relation("attendees").add(this.selectedAttendee);

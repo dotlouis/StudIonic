@@ -1,4 +1,4 @@
-angular.module('studionic', ['ionic','parse-angular','ngCordova','studionic.controllers','studionic.factories','studionic.values','studionic.directives'])
+angular.module('studionic', ['ionic','parse-angular','ngCordova','angularMoment','studionic.controllers','studionic.factories','studionic.values','studionic.directives'])
 
 .config(['$stateProvider','$urlRouterProvider','$logProvider', function($stateProvider, $urlRouterProvider, $logProvider) {
 
