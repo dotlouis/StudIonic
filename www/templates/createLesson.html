@@ -10,33 +10,28 @@
 
 			<label class="item item-input item-select">
 				<div class="input-label">Course</div>
-				<select ng-model="course" ng-change="updateStuff()" ng-options="c.get('name') for c in courses" ></select>
+				<!-- why $parent ? see https://github.com/angular-ui/ui-select/issues/18 -->
+				<select ng-model="$parent.selectedCourse" ng-options="course.name for course in courses" ></select>
 			</label>
 
 			<label class="item item-input item-select">
 				<div class="input-label">Attendees</div>
-				<select ng-model="attendee" ng-change="updateStuff()" ng-options="at.get('name') for at in attendees" ></select>
+				<select ng-model="$parent.selectedAttendee" ng-options="attendee.name for attendee in attendees" ></select>
 			</label>
 
 			<label class="item item-input item-select">
 				<div class="input-label">Teacher</div>
-				<select ng-model="teacher" ng-change="updateStuff()" ng-options="t.get('fullname') for t in teachers" ></select>
+				<select ng-model="$parent.selectedTeacher" ng-options="teacher.fullname for teacher in teachers" ></select>
 			</label>
 
 			<label class="item item-input item-select">
 				<div class="input-label">Room</div>
-				<select ng-model="room" ng-change="updateStuff()" ng-options="r.get('fullname') for r in rooms" ></select>
+				<select ng-model="$parent.selectedRoom" ng-options="room.fullname for room in rooms" ></select>
 			</label>
-
-			<label class="item item-input">
-				<span class="input-label">Date</span>
-				<input type="date" ng-model="date">
-			</label>
-
-			<div>
-				{{date}}
-			</div>
 
 		</div>
 	</ion-content>
+	<div class="bar bar-footer">
+		<button class="button button-clear button-royal" ng-click="saveLesson()" ng-disabled="!selectedCourse || !selectedAttendee || !selectedTeacher || !selectedRoom">Save</button>
+	</div>
 </ion-modal-view>

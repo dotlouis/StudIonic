@@ -1,20 +1,47 @@
 angular.module('studionic.controllers')
 
-.controller('CreateLessonCtrl', ['$scope','$stateParams','CourseFactory','RoleFactory','RoomFactory', function($scope, $stateParams, CourseFactory, RoleFactory, RoomFactory){
+.controller('CreateLessonCtrl', ['$scope','$stateParams','CourseFactory','RoleFactory','RoomFactory','LessonFactory', function($scope, $stateParams, CourseFactory, RoleFactory, RoomFactory, LessonFactory){
+
+    $scope.selectedCourse;
+    $scope.selectedAttendee;
+    $scope.selectedTeacher;
+    $scope.selectedRoom;
+
     CourseFactory.getAll().then(function(courses){
         $scope.courses = courses;
-        console.log(courses);
     });
     RoleFactory.getAll().then(function(groups){
         $scope.attendees = groups;
-        console.log(groups);
     });
     RoleFactory.getTeachers().then(function(teachers){
         $scope.teachers = teachers;
-        console.log(teachers);
     });
     RoomFactory.getAll().then(function(rooms){
         $scope.rooms = rooms;
-        console.log(rooms);
     });
+
+    $scope.saveLesson = function(){
+        var lesson = new LessonFactory;
+
+        try{
+            if(!this.selectedCourse)
+                throw "Please select a Course";
+            if(!this.selectedAttendee)
+                throw "Please select an Attendee";
+            if(!this.selectedTeacher)
+                throw "Please select a Teacher";
+            if(!this.selectedRoom)
+                throw "Please select a Room";
+
+
+            lesson.relation("course").add(this.selectedCourse);
+            lesson.relation("attendees").add(this.selectedAttendee);
+            lesson.relation("speakers").add(this.selectedTeacher);
+            lesson.relation("room").add(this.selectedRoom);
+            lesson.save().then(function(lessonAgain){
+                $scope.createLessonModal.hide();
+            });
+        }catch(error){alert(error);}
+    };
+
 }]);
