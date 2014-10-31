@@ -34,6 +34,18 @@
 				<div pickadate ng-model="$parent.selectedDate"></div>
 			</div>
 
+			<div class="item item-input">
+				<div class="input-label">Start</div>
+				<ng-time-selector hours="$parent.startHours" minutes="$parent.startMinutes"></ng-time-selector>
+			</div>
+
+			<div class="item item-input">
+				<div class="input-label">End</div>
+				<ng-time-selector hours="$parent.endHours" minutes="$parent.endMinutes"></ng-time-selector>
+			</div>
+			<br/>
+			<br/>
+
 		</div>
 	</ion-content>
 	<div class="bar bar-footer">

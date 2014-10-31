@@ -7,6 +7,11 @@ angular.module('studionic.controllers')
     $scope.selectedTeacher;
     $scope.selectedRoom;
     $scope.selectedDate;
+    var now = moment();
+    $scope.startHours = now.hours();
+    $scope.startMinutes = now.minutes();
+    $scope.endHours = moment(now).add(2, 'hours').hours();
+    $scope.endMinutes = now.minutes();
 
     CourseFactory.getAll().then(function(courses){
         $scope.courses = courses;
@@ -37,16 +42,15 @@ angular.module('studionic.controllers')
                 throw "Please select a Date";
 
             // lesson start tomorrow at 8AM and ends 2 hours later
-            lesson.start = moment(this.selectedDate).startOf('day').add(9, 'hours').toDate();
-            lesson.end = moment(lesson.start).add(2,'hours').toDate();
+            lesson.start = moment(this.selectedDate).hours(this.startHours).minutes(this.startMinutes).toDate();
+            lesson.end = moment(this.selectedDate).hours(this.endHours).minutes(this.endMinutes).toDate();
 
             lesson.relation("course").add(this.selectedCourse);
             lesson.relation("attendees").add(this.selectedAttendee);
             lesson.relation("speakers").add(this.selectedTeacher);
             lesson.relation("room").add(this.selectedRoom);
-            lesson.save().then(function(lessonAgain){
-                $scope.createLessonModal.hide();
-            });
+            $scope.createLessonModal.hide();
+            lesson.save();
         }catch(error){alert(error);}
     };
 
