@@ -29,9 +29,14 @@
 				<select ng-model="$parent.selectedRoom" ng-options="room.fullname for room in rooms" ></select>
 			</label>
 
+			<div class="item">
+				<div class="input-label">Date</div>
+				<div pickadate ng-model="$parent.selectedDate"></div>
+			</div>
+
 		</div>
 	</ion-content>
 	<div class="bar bar-footer">
-		<button class="button button-clear button-royal" ng-click="saveLesson()" ng-disabled="!selectedCourse || !selectedAttendee || !selectedTeacher || !selectedRoom">Save</button>
+		<button class="button button-clear button-royal" ng-click="saveLesson()" ng-disabled="!selectedCourse || !selectedAttendee || !selectedTeacher || !selectedRoom || !selectedDate">Save</button>
 	</div>
 </ion-modal-view>
