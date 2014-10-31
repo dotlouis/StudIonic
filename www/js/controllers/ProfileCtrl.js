@@ -28,6 +28,7 @@ angular.module('studionic.controllers')
 
 
     $scope.updateProfilePicture = function(){
+        $scope.popover.hide();
         $cordovaCamera.getPicture({
             quality: 75,
             destinationType : navigator.camera.DestinationType.DATA_URL,
@@ -48,6 +49,7 @@ angular.module('studionic.controllers')
     };
 
     $scope.updateCoverPicture = function(){
+        $scope.popover.hide();
         if($scope.user.role.name != 'admin'){
             console.log("Only admin can update the cover picture");
             return;
