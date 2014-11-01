@@ -263,10 +263,12 @@ ion-content.has-header{
 		color: $md-text;
 	}
 	h3,h4{
-		color: $md-secondary-text;
+		font-weight: 300;
+		color: $md-text;
 	}
 	p{
-		color: $md-text;
+		color: $md-secondary-text;
+		margin: 5px 0;
 		// margin-top: 15px;
 		font-size: 15px;
 	}
@@ -291,29 +293,50 @@ ion-content.has-header{
 	}
 }
 
-.card.course{
+.card.lesson{
 	h4{
-		margin-bottom: 3px;
+		margin-bottom: 15px;
 		font-size: 22px;
 		margin-top: 0;
 	}
 	.hint{
+		float: right;
 		color: $md-hint-text;
 		font-size: 13px;
 		margin-bottom: 0;
+	}
+	.speaker{
+		display: inline-block;
+		border-radius: 50%;
+		width: 25px;
+		height: 25px;
+		background: url(../img/teacher.jpg);
+		background-size: cover;
+	}
+	.ion-android-social-user{
+		font-size: 12px;
+	}
+	.ion-location{
+		font-size: 18px;
+	}
+	i{
+		display: inline-block;
+		width: 15px;
+		text-align: center;
+		padding-right: 5px;
 	}
 }
 
 .header-cover{
 	height: 128px;
 	background-color: $royal;
-	padding: 60px 20px 20px 55px;
+	padding: 45px 20px 20px 60px;
 
 	h4{
 		color: white;
-		font-size: 22px;
+		font-size: 25px;
 		margin-top: 0;
-		margin-bottom: 5px;
+		margin-bottom: 15px;
 	}
 	p{
 		color: white;

@@ -1,6 +1,8 @@
 <div ng-controller="LessonCardCtrl" ui-sref="^.lesson({id: lesson.id})">
+	<span am-time-ago="lesson.start" class="hint"></span>
 	<h4>{{lesson.course.name}}</h4>
-	<p class="hint"><span am-time-ago="lesson.start"></span> at {{lesson.room.fullname}}</p>
+	<p><i class="ion-location"></i> {{lesson.room.nickname}}</p>
+	<p><i class="ion-android-social-user"></i> {{lesson.speaker.fullname}}</p>
 <!-- 	<button class="button button-clear button-royal" ng-click="checkin()">
 		check in
 	</button> -->
