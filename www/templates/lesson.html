@@ -1,22 +1,22 @@
 <ion-view>
 	<ion-nav-bar align-title="left" class="bar bar-royal bar-transparent bar-md">
 		<div class="buttons left-buttons">
-			<button class="button button-icon ion-arrow-left-c" ui-sref="^.studlife"></button>			
+			<button class="button button-icon ion-arrow-left-c" ui-sref="^.studlife"></button>
 		</div>
 	</ion-nav-bar>
 
 	<ion-content padding="false" class="scroll-full">
 		<div class="header-cover">
-			<h4>{{lesson.name}}</h4>
-			<p>{{lesson.fulldatetime}}</p>
+			<h4>{{lesson.course.name}}</h4>
+			<p>{{lesson.start | amCalendar}}</p>
 		</div>
-		<div class="header-fab" ng-click="console.log('plop')">
-			<i class="ion-person-add"></i>
-		</div>
+<!-- 		<div class="header-fab" ng-click="console.log('plop')">
+	<i class="ion-person-add"></i>
+</div> -->
 		<div class="badge-list">
-			<badge setup="settings.badges['speaker']" data="lesson.speakers"></badge>
+			<badge setup="settings.badges['speaker']" data="lesson.speaker"></badge>
 			<badge setup="settings.badges['room']" data="lesson.room"></badge>
-			<badge setup="settings.badges['duration']" data="lesson.duration"></badge>
+			<!-- <badge setup="settings.badges['duration']" data="lesson.duration"></badge> -->
 		</div>
 		<div class="course-description">{{lesson.description}}</div>
 		<ul class="assignement-list">

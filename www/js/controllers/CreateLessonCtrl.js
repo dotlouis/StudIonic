@@ -45,10 +45,10 @@ angular.module('studionic.controllers')
             lesson.start = moment(this.selectedDate).hours(this.startHours).minutes(this.startMinutes).toDate();
             lesson.end = moment(this.selectedDate).hours(this.endHours).minutes(this.endMinutes).toDate();
 
-            lesson.relation("course").add(this.selectedCourse);
-            lesson.relation("attendees").add(this.selectedAttendee);
-            lesson.relation("speakers").add(this.selectedTeacher);
-            lesson.relation("room").add(this.selectedRoom);
+            lesson.course = this.selectedCourse;
+            lesson.attendees = this.selectedAttendee;
+            lesson.speaker = this.selectedTeacher;
+            lesson.room = this.selectedRoom;
             $scope.createLessonModal.hide();
             lesson.save();
         }catch(error){alert(error);}

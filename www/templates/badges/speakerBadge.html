@@ -1,4 +1,4 @@
-<div class="badge" ng-repeat="speaker in data">
-	<div class="badge-item speaker" ng-style="{ 'background-image': 'url(../img/teacher.jpg)' }"></div>
-	<div class="badge-label">{{speaker}}</div>
+<div class="badge">
+	<div class="badge-item speaker" ng-style="{ 'background-image': 'url('+data.profilePicture.url()+')' }"></div>
+	<div class="badge-label">{{data.fullname}}</div>
 </div>

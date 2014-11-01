@@ -20,10 +20,21 @@ angular.module('studionic.factories')
         get: function(id){
             var query =	new Parse.Query(this);
             query.include('course');
+            query.include('speaker');
+            query.include('room');
+            query.include('attendees');
             return query.get(id).then(function(lesson){
                 // do some stuff with lesson
                 return lesson;
             });
+        },
+        getForAttendees: function(attendees){
+            var query = new Parse.Query(this);
+            query.include('course');
+            query.include('speaker');
+            query.include('room');
+            query.equalTo('attendees', attendees);
+            return query.find();
         }
     });
 
@@ -42,9 +53,9 @@ angular.module('studionic.factories')
         set: function(assignements) { this.set("assignements", assignements); }
     });
 
-    Object.defineProperty(Lesson.prototype, "speakers", {
-        get: function() { return this.get("speakers"); },
-        set: function(speakers) { this.set("speakers", speakers); }
+    Object.defineProperty(Lesson.prototype, "speaker", {
+        get: function() { return this.get("speaker"); },
+        set: function(speaker) { this.set("speaker", speaker); }
     });
 
     Object.defineProperty(Lesson.prototype, "attendees", {

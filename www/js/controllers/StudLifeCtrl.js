@@ -1,6 +1,8 @@
 angular.module('studionic.controllers')
 
-.controller('StudLifeCtrl',['$scope','$ionicModal', function($scope, $ionicModal){
+.controller('StudLifeCtrl',['$scope','$ionicModal','LessonFactory', function($scope, $ionicModal, LessonFactory){
+
+    $scope.lessons;
 
     if($scope.user.isAdmin){
         $ionicModal.fromTemplateUrl('templates/createLesson.html', {
@@ -15,5 +17,9 @@ angular.module('studionic.controllers')
               $scope.createLessonModal.remove();
         });
     }
+
+    LessonFactory.getForAttendees($scope.user.role).then(function(lessons){
+        $scope.lessons = lessons;
+    });
 
 }]);

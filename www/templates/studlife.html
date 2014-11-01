@@ -7,9 +7,9 @@
 	<div class="fab" ng-click="createLessonModal.show()" ng-if="user.role.name == 'admin'"><i class="ion-plus-round"></i></div>
 	<ion-content has-bouncing="true">
 
-		<!-- <md-card setup="settings.cards['feedback']" class="feedback slideup"></md-card> -->
+		<md-card setup="settings.cards['feedback']" class="feedback slideup"></md-card>
 
-		<md-card setup="settings.cards['lesson']" class="lesson"></md-card>
+		<md-card setup="settings.cards['lesson']" data="lesson" ng-repeat="lesson in lessons" class="lesson"></md-card>
 
 	</ion-content>
 </ion-view>

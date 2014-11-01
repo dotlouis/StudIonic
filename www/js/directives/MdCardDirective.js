@@ -10,7 +10,8 @@ angular.module('studionic.directives')
             // https://docs.angularjs.org/guide/directive#directivedefinitionobject
             // and
             // http://stackoverflow.com/questions/13091204/how-do-i-isolate-only-a-single-value-in-my-directive-scope
-            setup: '='
+            setup: '=',
+            data: '='
         }
     };
 }]);
