@@ -1,0 +1,12 @@
+html, body{
+    height: 100%;
+}
+
+.bar-md{
+    height: 54px;
+    .title{
+        line-height: 54px;
+        height: 54px;
+        font-size: 18px;
+    }
+}

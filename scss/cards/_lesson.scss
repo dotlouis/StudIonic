@@ -1,0 +1,33 @@
+.card.lesson{
+    h4{
+        margin-bottom: 15px;
+        font-size: 22px;
+        margin-top: 0;
+    }
+    .hint{
+        float: right;
+        color: $md-hint-text;
+        font-size: 13px;
+        margin-bottom: 0;
+    }
+    .speaker{
+        display: inline-block;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        background: url(../img/teacher.jpg);
+        background-size: cover;
+    }
+    .ion-android-social-user{
+        font-size: 12px;
+    }
+    .ion-location{
+        font-size: 18px;
+    }
+    i{
+        display: inline-block;
+        width: 15px;
+        text-align: center;
+        padding-right: 5px;
+    }
+}

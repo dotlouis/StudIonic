@@ -1,0 +1,58 @@
+.badge-list{
+    margin-top: 10px;
+    margin-bottom: 28px;
+    text-align: center;
+
+    .badge-group{
+        display: inline-block;
+    }
+
+    .badge{
+        white-space: normal;
+        vertical-align: top;
+
+        .badge-item{
+            position: relative;
+            margin: auto;
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+
+            i{
+                position: absolute;
+                color: white;
+                font-size: 40px;
+            }
+
+            &.speaker{
+                background: url(../img/teacher.jpg);
+                background-size: cover;
+                border: 1px solid $royal;
+            }
+            &.room{
+                background: $royal;
+                i{
+                    left: 16px;
+                    top: 6px;
+                }
+            }
+
+            &.duration{
+                background: $royal;
+                i{
+                    left: 8px;
+                    top: 5px;
+                }
+            }
+
+        }
+        .badge-label{
+            color: $md-secondary-text;
+            font-size: 12px;
+            font-weight: 500;
+            width: 62px;
+            line-height: 14px;
+            margin-top: 2px;
+        }
+    }
+}

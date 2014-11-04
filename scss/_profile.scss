@@ -1,0 +1,127 @@
+.bar.bar-transparent{
+    border: none;
+    background-color: rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent);
+
+    + ion-content.has-header{
+        top: 0;
+        background-color: white;
+    }
+}
+
+// put the scroll height to take the whole place
+// allow to define content height in percent.
+.scroll-full > .scroll{
+    height: 100%;
+}
+
+.profile-cover{
+    height: 45%;
+    // background: url(../img/cover.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.profile-picture{
+    height: 100px;
+    width: 100px;
+    margin-top: -80px;
+    margin-left: 30px;
+    border-radius: 50%;
+    background-color: #eee;
+    // background-image: url(../img/logo-grey.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.profile-info{
+    padding: 30px;
+
+    h2{
+        color: $md-text;
+        margin-bottom: 15px;
+    }
+
+    p{
+        color: $md-secondary-text;
+        margin-bottom: 0;
+    }
+}
+
+.button-profile{
+    margin: 5px 20px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 2px solid white;
+    //background: url(../img/profile.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.header-cover{
+    height: 128px;
+    background-color: $royal;
+    padding: 45px 20px 20px 60px;
+
+    h4{
+        color: white;
+        font-size: 25px;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+    p{
+        color: white;
+        font-size: 12px;
+        padding-right: 70px;
+    }
+}
+
+.header-fab{
+    position: relative;
+    height: 56px;
+    width: 56px;
+    margin-top: -28px;
+    margin-left: 75%;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0px 0px 6px -1px $md-text;
+
+    &.activated{
+        background-color: #eee;
+    }
+
+    i{
+        position: absolute;
+        left: 20px;
+        top: 18px;
+        font-size: 20px;
+        color: $royal;
+    }
+}
+
+.course-description{
+    border-top: 1px solid $md-dividers;
+    padding: 15px;
+    margin: 10px;
+    color: $md-text;
+    font-size: 16px;
+    text-align: center;
+}
+
+.assignement-list{
+    border-top: 1px solid $md-dividers;
+    padding: 15px;
+    margin: 10px;
+
+    h6{
+        text-transform: uppercase;
+        color: $md-secondary-text;
+    }
+
+    .item{
+        border: none;
+    }
+}
