@@ -6,8 +6,7 @@ angular.module('studionic.controllers')
     $ionicViewService.clearHistory();
 
     $scope.user = {
-        email: "larry.page@admin.france-bs.com",
-        password: "imlarry"
+        id: 2131700
     };
 
 
@@ -25,6 +24,18 @@ angular.module('studionic.controllers')
 
     $scope.logIn = function(){
         UserFactory.logIn($scope.user.email, $scope.user.password).then(function(signedUser){
+            $state.go('app.studlife');
+        }, function(error){
+            $ionicPopup.alert({
+                title: "Login",
+                template: error.message
+            });
+        });
+    }
+
+    $scope.anonymousLogIn = function(){
+        console.log($scope.user);
+        UserFactory.logIn($scope.user.id.toString(), $scope.user.id.toString()).then(function(signedUser){
             $state.go('app.studlife');
         }, function(error){
             $ionicPopup.alert({

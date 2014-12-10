@@ -22,4 +22,29 @@ angular.module('studionic.controllers')
         $scope.lessons = lessons;
     });
 
+    $scope.fetchIcal = function(){
+        Parse.Cloud.run('parseCalendar').then(function(events){
+            var today = new Date();
+            for( var i in events){
+                var e = events[i]
+                if(e.start.getDate()==today.getDate() && e.start.getMonth()==today.getMonth()){
+                    console.log(e);
+                    var desc = e.description.substring(1);
+                    var speaker = desc.substring(0, desc.indexOf('\n'));
+                    console.log("speaker: "+speaker);
+
+                    /* var lesson = new LessonFactory();
+                    lesson.save({
+                        start: e.start,
+                        end: e.end,
+                        teacher:
+                    })*/
+                }
+            }
+            },
+            function(error) {
+                console.log(error);
+            });
+    };
+
 }]);

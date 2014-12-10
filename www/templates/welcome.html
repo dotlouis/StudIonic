@@ -4,7 +4,7 @@
             <div class="logo logobig"></div>
             <h1><strong>Stud</strong>app</h1>
             <p>Bring modern communication and workflow to your school</p>
-            <button class="button button-energized get-started" ng-click="lastSlide()">Get Started</button>
+            <button class="button get-started" ng-click="lastSlide()">Get Started</button>
             <button class="next button icon-right ion-chevron-right button-clear button-light learn-more" ng-click="nextSlide()">Learn more</button>
         </div>
     </ion-slide>
@@ -43,6 +43,7 @@
         <div class="slide last-slide">
             <div class="logo"></div>
             <h1><strong>Login</strong></h1>
+<!--
             <form ng-submit="logIn()" class="list">
                 <label class="item item-input">
                     <span class="input-label">Email</span>
@@ -52,8 +53,17 @@
                     <span class="input-label">Password</span>
                     <input type="password" ng-model="user.password">
                 </label>
-                <input value="Sign In" type="submit" class="button button-energized signin"/>
+                <input value="Sign In" type="submit" class="button signin"/>
             </form>
+-->
+            <form ng-submit="anonymousLogIn()" class="list">
+                <label class="item item-input">
+                    <span class="input-label">Numéro d'étudiant</span>
+                    <input type="number" ng-model="user.id">
+                </label>
+                <input value="OK" type="submit" class="button signin"/>
+            </form>
+
             <a href="#" class="banner">
                 Want to bring Studapp to your school ?
             </a>
