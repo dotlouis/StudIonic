@@ -7,8 +7,8 @@
 	<div class="fab" ng-click="createLessonModal.show()" ng-if="user.role.name == 'admin'"><i class="ion-plus-round"></i></div>
 	<ion-content has-bouncing="true">
 
-		<button ng-click="fetchIcal()" class="button">
-			Fetch
+		<button ng-click="logout()" class="button">
+			Logout
 		</button>
 
 		<md-card setup="settings.cards['feedback']" class="feedback"></md-card>

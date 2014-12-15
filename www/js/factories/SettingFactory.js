@@ -1,6 +1,6 @@
 angular.module('studionic.factories')
 
-.factory('SettingFactory', ['$q','DefaultSettings', function($q, DefaultSettings){
+.factory('Setting', ['$q','DefaultSettings', function($q, DefaultSettings){
     return {
         key: function(index){
             var deferred = $q.defer();

@@ -1,6 +1,6 @@
-angular.module('studionic', ['ionic','parse-angular','ngCordova','angularMoment','pickadate','studionic.controllers','studionic.factories','studionic.values','studionic.directives'])
+angular.module('studionic', ['ionic','ngCordova','angularMoment','pickadate','studionic.controllers','studionic.factories','studionic.values','studionic.directives'])
 
-.config(['$stateProvider','$urlRouterProvider','$logProvider', function($stateProvider, $urlRouterProvider, $logProvider) {
+.config(['$stateProvider','$urlRouterProvider','$logProvider','$httpProvider', function($stateProvider, $urlRouterProvider, $logProvider, $httpProvider) {
 
     // Whether the application will log debug messages or not
     $logProvider.debugEnabled(true);
@@ -10,28 +10,23 @@ angular.module('studionic', ['ionic','parse-angular','ngCordova','angularMoment'
         templateUrl: "templates/welcome.html",
         controller: 'WelcomeCtrl',
         resolve: {
-            signedUser: function(UserFactory, $state){
-                UserFactory.current().then(function(signedUser){
+            signedUser: function(User, $state, $q){
+                if(User.isAuthenticated())
                     $state.go('app.studlife');
-                });
+                return;
             }
         }
     })
     .state('app', {
         url: "/app",
         abstract: true,
-        //templateUrl: "templates/menu.html",
         template: '<ion-nav-view name="main" animation="slide-left-right"></ion-nav-view>',
         controller: 'AppCtrl',
         resolve: {
-            signedUser: function(UserFactory, $state){
-                // The signed user is implicitly injected into the controller
-                // because of the chaining of promises.
-                // here we only describe the reject part but when it resolve it returns the
-                // result of the parent promise.
-                return UserFactory.current().catch(function(error){
+            signedUser: function(User, $state, $q){
+                if(!User.isAuthenticated())
                     $state.go('welcome');
-                });
+                return;
             }
         }
     })
@@ -66,4 +61,18 @@ angular.module('studionic', ['ionic','parse-angular','ngCordova','angularMoment'
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/studlife');
+
+
+    // Handling errors
+    // http://docs.strongloop.com/display/public/LB/AngularJS+JavaScript+SDK#AngularJSJavaScriptSDK-Handling401Unauthorized
+    $httpProvider.interceptors.push(function($q, $location) {
+        return {
+            responseError: function(rejection) {
+                // Server down or does not answer
+                if(rejection.status == 0)
+                    return $q.reject({message:"Can't reach the server", name:"Error", status: 0, statusCode: 0});
+                return $q.reject(rejection.data.error);
+            }
+        };
+    });
 }]);
