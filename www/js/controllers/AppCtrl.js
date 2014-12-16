@@ -1,17 +1,17 @@
 angular.module('studionic.controllers')
 
-.controller('AppCtrl', ['$scope','$state','User','Setting','signedUser','$ionicViewService', function($scope, $state, User, Setting, signedUser, $ionicViewService){
+.controller('AppCtrl', ['$scope','$state','User','Setting','$ionicHistory', function($scope, $state, User, Setting, $ionicHistory){
     $scope.logout = function(){
         User.logout().$promise.then(function(){
+            $ionicHistory.nextViewOptions({
+                disableBack: true,
+                historyRoot: true
+            });
             $state.go('welcome');
         });
     };
 
-    // Used to clear history after signinIn or singinUp
-    // see https://github.com/studapp/Studionic/issues/2
-    $ionicViewService.clearHistory();
-
-    $scope.user = signedUser;
+    $scope.user = User.getCachedCurrent();
     Setting.setDefault();
     Setting.get('settings').then(function(settings){
         $scope.settings = settings;

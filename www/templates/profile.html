@@ -1,13 +1,7 @@
-<ion-view>
-	<ion-nav-bar align-title="left" class="bar bar-royal bar-transparent bar-md">
-		<div class="buttons left-buttons">
-			<button class="button button-icon ion-arrow-left-c" ui-sref="^.studlife"></button>
-		</div>
-		<h1 class="title">{{user.fullname}}</h1>
-		<div class="buttons right-buttons">
-			<button class="button button-icon ion-more" ng-click="popover.show($event)"></button>
-		</div>
-	</ion-nav-bar>
+<ion-view view-title="{{user.fullname}}">
+	<ion-nav-buttons side="secondary">
+		<button class="button button-icon ion-more" ng-click="popover.show($event)"></button>
+	</ion-nav-buttons>
 
 	<ion-content padding="false" class="scroll-full">
 		<div class="profile-cover" ng-style="{'background-image':'url('+user.school.coverPicture.url()+')'}"></div>
@@ -17,7 +11,7 @@
 			<p>{{user.role.name}} at {{user.school.name}}</p>
 			<!-- <p>{{user.absences}} check in missed</p> -->
 		</div>
-		<button class="button button-outline button-full button-assertive" ng-click="logOut()">Logout</button>
+		<button class="button button-outline button-full button-assertive" ng-click="logout()">Logout</button>
 	</ion-content>
 </ion-view>
 

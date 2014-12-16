@@ -1,15 +1,9 @@
-<ion-view title="Studapp">
-	<ion-nav-bar align-title="center" class="bar bar-royal bar-md">
-		<div class="buttons left-buttons">
-			<button class="button-profile" ng-style="{'background-image':'url('+user.profilePicture.url()+')'}" ui-sref="^.profile"></button>
-		</div>
-	</ion-nav-bar>
+<ion-view view-title="Studapp" hide-back-button="true">
+	<ion-nav-buttons side="primary">
+		<button class="button-profile" ng-style="{'background-image':'url('+user.profilePicture.url()+')'}" ui-sref="^.profile"></button>
+	</ion-nav-buttons>
 	<div class="fab" ng-click="createLessonModal.show()" ng-if="user.role.name == 'admin'"><i class="ion-plus-round"></i></div>
 	<ion-content has-bouncing="true">
-
-		<button ng-click="logout()" class="button">
-			Logout
-		</button>
 
 		<md-card setup="settings.cards['feedback']" class="feedback"></md-card>
 

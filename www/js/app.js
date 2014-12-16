@@ -1,6 +1,12 @@
-angular.module('studionic', ['ionic','ngCordova','angularMoment','pickadate','studionic.controllers','studionic.factories','studionic.values','studionic.directives'])
+angular.module('studionic', ['ionic','ngCordova','angularMoment','pickadate','permission','studionic.controllers','studionic.factories','studionic.values','studionic.directives'])
 
-.config(['$stateProvider','$urlRouterProvider','$logProvider','$httpProvider', function($stateProvider, $urlRouterProvider, $logProvider, $httpProvider) {
+.config(['$stateProvider','$urlRouterProvider','$logProvider','$httpProvider','$ionicConfigProvider', function($stateProvider, $urlRouterProvider, $logProvider, $httpProvider, $ionicConfigProvider) {
+
+    $ionicConfigProvider.navBar.alignTitle('platform');
+    $ionicConfigProvider.navBar.positionPrimaryButtons('platform');
+    $ionicConfigProvider.navBar.positionSecondaryButtons('platform');
+    $ionicConfigProvider.backButton.text(false);
+    $ionicConfigProvider.backButton.previousTitleText(false);
 
     // Whether the application will log debug messages or not
     $logProvider.debugEnabled(true);
@@ -9,24 +15,22 @@ angular.module('studionic', ['ionic','ngCordova','angularMoment','pickadate','st
         url: "/welcome",
         templateUrl: "templates/welcome.html",
         controller: 'WelcomeCtrl',
-        resolve: {
-            signedUser: function(User, $state, $q){
-                if(User.isAuthenticated())
-                    $state.go('app.studlife');
-                return;
+        data: {
+            permissions: {
+                only: ['anonymous'],
+                redirectTo: 'app.studlife'
             }
         }
     })
     .state('app', {
         url: "/app",
         abstract: true,
-        template: '<ion-nav-view name="main" animation="slide-left-right"></ion-nav-view>',
+        template: '<ion-nav-bar class="bar bar-royal bar-md"><ion-nav-back-button></ion-nav-back-button></ion-nav-bar><ion-nav-view name="main"></ion-nav-view>',
         controller: 'AppCtrl',
-        resolve: {
-            signedUser: function(User, $state, $q){
-                if(!User.isAuthenticated())
-                    $state.go('welcome');
-                return;
+        data: {
+            permissions: {
+                except: ['anonymous'],
+                redirectTo: 'welcome'
             }
         }
     })
@@ -74,5 +78,13 @@ angular.module('studionic', ['ionic','ngCordova','angularMoment','pickadate','st
                 return $q.reject(rejection.data.error);
             }
         };
+    });
+}])
+
+.run(['Permission','User', function(Permission, User){
+    Permission.defineRole('anonymous', function (stateParams) {
+        if (!User.isAuthenticated())
+            return true;
+        return false;
     });
 }]);

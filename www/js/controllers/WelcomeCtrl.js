@@ -1,9 +1,6 @@
 angular.module('studionic.controllers')
 
-.controller('WelcomeCtrl',['$scope','$state','$ionicPopup','$ionicSlideBoxDelegate','User','$ionicViewService', function($scope, $state, $ionicPopup, $ionicSlideBoxDelegate, User, $ionicViewService){
-
-    // see AppCtrl
-    $ionicViewService.clearHistory();
+.controller('WelcomeCtrl',['$scope','$state','$ionicPopup','$ionicSlideBoxDelegate','User','$ionicHistory', function($scope, $state, $ionicPopup, $ionicSlideBoxDelegate, User, $ionicHistory){
 
     $scope.user = {
         univId: 2131700
@@ -28,6 +25,10 @@ angular.module('studionic.controllers')
             email: id+"@dev.null",
             password: id
         }).$promise.then(function(){
+            $ionicHistory.nextViewOptions({
+                disableBack: true,
+                historyRoot: true
+            });
             $state.go('app.studlife');
         }, function(error){
             $ionicPopup.alert({
