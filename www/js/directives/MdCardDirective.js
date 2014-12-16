@@ -3,7 +3,6 @@ angular.module('studionic.directives')
 .directive('mdCard', [function() {
     return {
         restrict: 'E',
-        replace: true,
         template: '<div ng-if="setup.enabled" ng-include="setup.templateUrl" class="card card-md"></div>',
         scope: {
             // shit dat iz no ez:

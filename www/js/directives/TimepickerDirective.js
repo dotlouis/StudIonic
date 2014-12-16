@@ -12,7 +12,6 @@ angular.module('studionic.directives')
             hours: "=",
             minutes: "="
         },
-        replace: true,
         link: function (scope, elem, attr) {
 
             //Create vars
