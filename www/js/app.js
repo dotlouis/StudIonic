@@ -1,4 +1,4 @@
-angular.module('studionic', ['ionic','ngCordova','angularMoment','pickadate','permission','studionic.controllers','studionic.factories','studionic.values','studionic.directives'])
+angular.module('studionic', ['ionic','ngCordova','angularMoment','pickadate','permission','studionic.controllers','studionic.factories','studionic.values','studionic.directives','lbServices'])
 
 .config(['$stateProvider','$urlRouterProvider','$logProvider','$httpProvider','$ionicConfigProvider', function($stateProvider, $urlRouterProvider, $logProvider, $httpProvider, $ionicConfigProvider) {
 
@@ -81,9 +81,9 @@ angular.module('studionic', ['ionic','ngCordova','angularMoment','pickadate','pe
     });
 }])
 
-.run(['Permission','User', function(Permission, User){
+.run(['Permission','CustomUser', function(Permission, CustomUser){
     Permission.defineRole('anonymous', function (stateParams) {
-        if (!User.isAuthenticated())
+        if (!CustomUser.isAuthenticated())
             return true;
         return false;
     });

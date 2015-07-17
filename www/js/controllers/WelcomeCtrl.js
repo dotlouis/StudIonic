@@ -1,6 +1,6 @@
 angular.module('studionic.controllers')
 
-.controller('WelcomeCtrl',['$scope','$state','$ionicPopup','$ionicSlideBoxDelegate','User','$ionicHistory', function($scope, $state, $ionicPopup, $ionicSlideBoxDelegate, User, $ionicHistory){
+.controller('WelcomeCtrl',['$scope','$state','$ionicPopup','$ionicSlideBoxDelegate','CustomUser','$ionicHistory', function($scope, $state, $ionicPopup, $ionicSlideBoxDelegate, CustomUser, $ionicHistory){
 
     $scope.user = {
         univId: 2131700
@@ -21,12 +21,12 @@ angular.module('studionic.controllers')
 
     $scope.login = function(){
         var id = $scope.user.univId.toString();
-        User.login({
+        CustomUser.login({
             email: id+"@dev.null",
             password: id
         }).$promise.then(function(){
             $ionicHistory.nextViewOptions({
-                disableBack: true,
+                disableBack: false,
                 historyRoot: true
             });
             $state.go('app.studlife');
